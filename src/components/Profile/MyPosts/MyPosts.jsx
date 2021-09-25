@@ -13,8 +13,9 @@ const MyPosts = () => {
 				</div>
 			</div>
 			<div>
-				<Post />
-				<Post />
+				<Post message='Hello world' likes='4' />
+				<Post message='Ебиссь оно конём' likes='13' />
+				<Post message='.أنا أكره هذه العبارةა' likes='76' />
 			</div>
 		</div>
 	)
