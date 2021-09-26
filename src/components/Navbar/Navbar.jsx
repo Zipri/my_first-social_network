@@ -4,21 +4,27 @@ import s from './Navbar.module.css'
 const Navbar = () => {
 	return (
 		<nav className={s.nav}>
-			<div className={`${s.item} ${s.active}`}>
-				<a>Profile</a>
-			</div>
+			{/*TODO добавить в navbar над владками меню пользователя - картинка и описание, ФИО*/}
 			<div className={s.item}>
-				<a>Messages</a>
+				<a href="/profile">Profile</a>
 			</div>
+
 			<div className={s.item}>
-				<a>News</a>
+				<a href="/dialogs">Messages</a>
 			</div>
+
 			<div className={s.item}>
-				<a>Music</a>
+				<a href="/news">News</a>
 			</div>
-			<div className={`${s.item} ${s.active}`}>
-				<a>Settings</a>
+
+			<div className={s.item}>
+				<a href="/music">Music</a>
 			</div>
+
+			<div className={s.item}>
+				<a href="/settings">Settings</a>
+			</div>
+
 		</nav>
 	)
 }

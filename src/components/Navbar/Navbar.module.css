@@ -1,11 +1,21 @@
 .nav {
     grid-area: n;
+    align-self: start; /*TODO заменить на start позже*/
     background-color: #b2d1fb;
+}
+.nav a {
+    text-decoration: none;
+    color: antiquewhite;
+}
+.nav a:hover {
+    text-decoration: none;
+    color: #997e03;
 }
 
 .item {
-    color: #ffffff;
-}
-.item.active {
-    color: #1414cb;
+    font-family: "Book Antiqua";
+    font-size: 40px;
+    text-align: center;
+    border-bottom: 2px solid;
+    border-bottom-color: rgba(15, 122, 252, 0.2);
 }
