@@ -19,3 +19,7 @@
     border-bottom: 2px solid;
     border-bottom-color: rgba(15, 122, 252, 0.2);
 }
+.active:before {
+    content: '‣ ';
+    color: #ebf2ff;
+}
