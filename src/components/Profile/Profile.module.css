@@ -1,1 +1,9 @@
+.profileWrapper {
+    display: grid;
 
+    grid-template-areas:
+            'background background'
+            'myPosts profileInfo' ;
+    grid-template-columns: 1fr 1fr;
+    grid-auto-rows: 500px 1fr;
+}

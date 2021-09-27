@@ -1,3 +1,33 @@
-.postsBlock {
+.myPosts {
+    grid-area: myPosts;
+
     padding: 10px;
+}
+
+.addPost {
+    padding-bottom: 10px;
+    display: flex;
+}
+.addPost textarea {
+    background-color: antiquewhite;
+    height: 40px;
+    width: 500px;
+    resize: none;
+    border-radius: 10px;
+    outline: none;
+    font-size: 20px;
+}
+.addPost button {
+    height: 45px;
+    width: 45px;
+    border: none;
+    background-color: #c1965b;
+    border-radius: 50%;
+    font-size: 30px;
+    font-family: Serif;
+}
+/*TODO добавить отступ между арией и кнопкой*/
+
+.Posts {
+
 }

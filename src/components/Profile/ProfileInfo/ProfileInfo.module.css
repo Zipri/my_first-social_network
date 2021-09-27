@@ -1,7 +1,21 @@
-.background {
+.profileInfo {
+    grid-area: profileInfo;
 
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+}
+
+.image {
+    padding: 10px;
+    margin-right: 0;
+}
+.image img {
+    width: 200px;
+    height: 200px;
+    border-radius: 20%;
 }
 
 .description {
     padding: 10px;
 }
+

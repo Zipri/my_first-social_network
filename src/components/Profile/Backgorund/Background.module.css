@@ -1,0 +1,14 @@
+.background {
+    grid-area: background;
+    width: 100%;
+    height: 500px;
+}
+
+.background img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 0 0;
+    /*TODO горизонтальное центрирование ебучего фона и размытие ебучих границ*/
+    /*box-shadow: 12px 29px 81px 0px rgba(0,0,0,0.75);*/
+}
