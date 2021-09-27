@@ -4,12 +4,12 @@ import MyPosts from "./MyPosts/MyPosts";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import Background from "./Backgorund/Background";
 
-const Profile = () => {
+const Profile = (props) => {
 	return (
 		<div className={s.profileWrapper}>
 			<Background />
 			<ProfileInfo />
-			<MyPosts />
+			<MyPosts postsData={props.postsData} />
 		</div>
 	)
 }
