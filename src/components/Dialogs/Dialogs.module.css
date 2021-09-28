@@ -1,20 +1,6 @@
-.dialogs {
+.dialogsWrapper {
+    padding-left: 10px;
     display: grid;
-    grid-template-columns: 2fr 10fr;
-}
-
-.dialogsItems {
-    padding: 10px;
-}
-
-.dialog {
-
-}
-
-.messages {
- padding: 10px;
-}
-
-.message {
+    grid-template-columns: 1fr 3fr;
 
 }

@@ -1,0 +1,55 @@
+.messages {
+    padding-top: 10px;
+    padding-left: 30px;
+    background-color: #b2d1fb;
+}
+
+.message {
+    display: flex;
+    padding-bottom: 10px;
+}
+
+.message div {
+    margin-left: 5px;
+    border-radius: 10px;
+    background-color: #ebf2ff;
+}
+
+.message text {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.message img {
+    width: 40px;
+    height: 40px;
+    border-radius: 20%;
+}
+
+.sendMess {
+    display: flex;
+    padding-top: 5px;
+    padding-right: 30px;
+}
+
+.sendMess img {
+    height: 25px;
+}
+
+.sendMess textarea {
+    background-color: #ebf2ff;
+    height: 40px;
+    width: 100%;
+    resize: none;
+    border-radius: 10px;
+    outline: none;
+    font-size: 20px;
+}
+
+.sendMess button {
+    margin-left: 5px;
+    height: 45px;
+    width: 45px;
+    border: none;
+    border-radius: 50%;
+}

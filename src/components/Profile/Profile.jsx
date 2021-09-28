@@ -9,7 +9,7 @@ const Profile = (props) => {
 		<div className={s.profileWrapper}>
 			<Background />
 			<ProfileInfo />
-			<MyPosts postsData={props.postsData} />
+			<MyPosts posts={props.posts} />
 		</div>
 	)
 }

@@ -1,0 +1,31 @@
+.dialogs {
+    padding-top: 10px;
+    border-right: 2px solid;
+    border-color: #997e03;
+}
+
+
+.dialog {
+    font-family: "Book Antiqua";
+    font-size: 25px;
+    padding-bottom: 10px;
+    display: flex;
+}
+
+.dialog a {
+    padding-left: 5px;
+    position-text: center;
+    text-decoration: none;
+    color: #7ea1cd;
+}
+
+.dialog a:hover {
+    text-decoration: underline dotted;
+    color: #997e03;
+}
+
+.dialog img {
+    width: 50px;
+    height: 50px;
+    border-radius: 20%;
+}

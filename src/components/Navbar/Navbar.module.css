@@ -1,6 +1,6 @@
 .nav {
     grid-area: n;
-    align-self: start; /*TODO заменить на start позже*/
+    align-self: start;
     background-color: #b2d1fb;
 }
 .nav a {

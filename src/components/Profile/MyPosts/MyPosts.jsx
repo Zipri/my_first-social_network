@@ -4,18 +4,27 @@ import Post from "./Post/Post";
 
 const MyPosts = (props) => {
 
-	let postsEl = props.postsData
+	let postsEl = props.posts
 		.map(p => <Post
 			message={p.message}
 			likes={p.likes}
-			id={p.id}
-		/>)
+			id={p.id}/>)
+
+	let newPostEl = React.createRef()
+
+	let addPost = () => {
+		let text = newPostEl.current.value;
+		return (
+			alert(text)
+		)
+	}
 
 	return (
 		<div className={s.myPosts}>
 			<div className={s.addPost}>
-				<textarea/>
-				<button>+</button>
+				<textarea ref={newPostEl}/>
+				{/*TODO Азъ Есьм Плохо, не стоит такой хуйнёй страдать*/}
+				<button onClick={addPost}>+</button>
 			</div>
 			<div className={s.Posts}>
 				{postsEl}
