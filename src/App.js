@@ -1,6 +1,6 @@
 import React from 'react'
 import './App.css';
-import {BrowserRouter, Route} from "react-router-dom";
+import {Route} from "react-router-dom";
 //TODO разобраться, почему подчёркивает Route
 import Header from "./components/Header/Header";
 import Navbar from "./components/Navbar/Navbar";
@@ -18,7 +18,9 @@ const App = (props) => {
 			<Navbar/>
 			<div className='content-wrapper'>
 				<Route path='/profile' render={() =>
-					<Profile posts={props.appState.profilePage.posts}/>}/>
+					<Profile
+						posts={props.appState.profilePage.posts}
+						addPost={props.addPost}/>}/>
 				<Route path='/dialogs' render={() =>
 					<Dialogs
 						dialogs={props.appState.dialogsPage.dialogs}

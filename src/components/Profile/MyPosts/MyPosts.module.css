@@ -9,7 +9,7 @@
     display: flex;
 }
 .addPost textarea {
-    background-color: antiquewhite;
+    background-color: #f6f1e2;
     height: 40px;
     width: 500px;
     resize: none;
