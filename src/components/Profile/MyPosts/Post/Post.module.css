@@ -1,13 +1,26 @@
-.item {
-    padding-bottom: 10px;
-    color: blue;
+.post {
+    width: 555px;
+    margin-bottom: 10px;
     display: flex;
+    border-radius: 10px;
+    background-color: #deb48c;
 }
-.item img {
+.post img {
     width: 50px;
     height: 50px;
     border-radius: 20%;
 }
-.item div {
+.post div {
     padding-left: 5px;
+}
+
+.likes {
+    float: right;
+    padding-right: 5px;
+}
+
+.postText {
+    width: 100%;
+    padding-bottom: 5px;
+    color: #5f3e10;
 }

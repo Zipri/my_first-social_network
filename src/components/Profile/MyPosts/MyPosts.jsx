@@ -29,10 +29,9 @@ const MyPosts = (props) => {
 					ref={newPostEl}
 					value={props.newPostText}
 					onChange={onPostChange}/>
-				{/*TODO Азъ Есьм Плохо (ref), не стоит такой хуйнёй страдать*/}
 				<button onClick={addPost}>+</button>
 			</div>
-			<div className={s.Posts}>
+			<div>
 				{postsEl}
 			</div>
 		</div>

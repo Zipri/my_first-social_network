@@ -8,8 +8,11 @@
 .dialog {
     font-family: "Book Antiqua";
     font-size: 25px;
-    padding-bottom: 10px;
+    margin-bottom: 10px;
+    margin-right: 10px;
     display: flex;
+    border-radius: 10px;
+    background-color: #f6f1e2;
 }
 
 .dialog a {

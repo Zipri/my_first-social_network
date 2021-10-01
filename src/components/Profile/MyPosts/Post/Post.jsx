@@ -3,11 +3,11 @@ import s from './Post.module.css'
 
 const Post = (props) => {
 	return (
-		<div className={s.item}>
+		<div className={s.post}>
 			<img src='https://goldenmost.ru/wp-content/uploads/2017/07/Kon2.jpg'/>
-			<div className={s.text}>
+			<div className={s.postText}>
 				<div>{props.message}</div>
-				<div> 👍 {props.likes}</div>
+				<div className={s.likes}> 👍 {props.likes}</div>
 			</div>
 		</div>
 	)
