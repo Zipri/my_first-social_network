@@ -44,14 +44,25 @@ let Store = {
 			]
 		},
 	},
+	_callSubscriber() {
+	},
 
-	_callSubscriber () {},
-
+	subscribe(observer) {
+		this._callSubscriber = observer
+	},
 	getState() {
 		return this._state
 	},
 
-	addPost () {
+	dispatch(action) {
+		if (action.type === 'ADD-POST') {
+			this._addPost()
+		} else if (action.type === 'UPDATE-NEW-POST') {
+			this._updateNewPostText(action.newText)
+		}
+	},
+
+	_addPost() {
 		let newPost = {
 			id: 6,
 			message: this._state.profilePage.newPostText,
@@ -61,15 +72,10 @@ let Store = {
 		this._state.profilePage.newPostText = ''
 		this._callSubscriber(this._state)
 	},
-
-	updateNewPostText (newText) {
+	_updateNewPostText(newText) {
 		this._state.profilePage.newPostText = newText
 		this._callSubscriber(this._state)
 	},
-
-	subscribe (observer) {
-		this._callSubscriber = observer
-	}
 }
 
 export default Store

@@ -13,19 +13,19 @@ const MyPosts = (props) => {
 	let newPostEl = React.createRef()
 
 	let addPost = () => {
-		props.addPost()
+		props.dispatch({type: 'ADD-POST'})
 	}
 
 	let onPostChange = () => {
 		let text = newPostEl.current.value;
-		props.updateNewPostText(text);
+		props.dispatch({type: 'UPDATE-NEW-POST', newText: text});
 	}
 
 	return (
 		<div className={s.myPosts}>
 			<div className={s.addPost}>
 				<textarea
-					placeholder="Write a post..."
+					placeholder="Write a new post..."
 					ref={newPostEl}
 					value={props.newPostText}
 					onChange={onPostChange}/>
