@@ -6,8 +6,11 @@ import MessageWindow from "./MessageWindow/MessageWindow";
 const Dialogs = (props) => {
 	return (
 		<div className={s.dialogsWrapper}>
-			<DialogSelector dialogs={props.dialogs}/>
-			<MessageWindow messages={props.messages}/>
+			<DialogSelector dialogs={props.dialogsPage.dialogs}/>
+			<MessageWindow
+				newMessageText={props.dialogsPage.newMessageText}
+				messages={props.dialogsPage.messages}
+				dispatch={props.dispatch}/>
 		</div>
 	)
 }

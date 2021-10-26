@@ -25,12 +25,14 @@ const App = (props) => {
 
 				<Route path='/dialogs' render={() =>
 					<Dialogs
-						dialogs={props.state.dialogsPage.dialogs}
-						messages={props.state.dialogsPage.messages}/>}/>
+						dialogsPage={props.state.dialogsPage}
+						dispatch={props.dispatch}/>}/>
 
 				<Route path='/news' component={News}/>
 				<Route path='/music' component={Music}/>
 				<Route path='/settings' component={Settings}/>
+
+
 
 			</div>
 		</div>
