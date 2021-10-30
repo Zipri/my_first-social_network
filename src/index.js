@@ -5,7 +5,8 @@ import ReactDOM from "react-dom";
 import {BrowserRouter} from "react-router-dom";
 
 import App from "./App";
-import Store from "./redux/state";
+import Store from "./redux/store";
+import store from "./redux/redux-store";
 
 
 
@@ -14,12 +15,15 @@ let rerenderEntireTree = (state) => {
 		<BrowserRouter>
 			<App
 				state={state}
-				dispatch={Store.dispatch.bind(Store)}/>
+				dispatch={store.dispatch.bind(store)}/>
 		</BrowserRouter>
 	</React.StrictMode>, document.getElementById('root'));
 }
-rerenderEntireTree(Store.getState());
-Store.subscribe(rerenderEntireTree)
+rerenderEntireTree(store.getState());
+store.subscribe(() => {
+	let state = store.getState()
+	rerenderEntireTree(state);
+});
 
 reportWebVitals();
 

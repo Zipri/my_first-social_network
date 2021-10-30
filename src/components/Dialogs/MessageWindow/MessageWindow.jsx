@@ -1,7 +1,7 @@
 import React from "react";
 import s from './MessageWindow.module.css'
 import Message from "./Message/Message";
-import {addMessageActionCreator, updateNewMessageTextActionCreator} from "../../../redux/dialogsReducer";
+import {addMessageActionCreator, updateNewMessageTextActionCreator} from "../../../redux/dialogs-reducer";
 
 const MessageWindow = (props) => {
 
