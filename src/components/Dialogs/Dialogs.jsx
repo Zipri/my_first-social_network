@@ -6,10 +6,8 @@ import DialogContainer from "./DialogSelector/DialogContainer";
 const Dialogs = (props) => {
 	return (
 		<div className={s.dialogsWrapper}>
-			<DialogContainer
-				store={props.store}/>
-			<MessageContainer
-				store={props.store}/>
+			<DialogContainer />
+			<MessageContainer />
 		</div>
 	)
 }

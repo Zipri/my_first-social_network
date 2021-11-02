@@ -14,17 +14,16 @@ import Settings from "./components/Settings/Settings";
 const App = (props) => {
 	return (
 		<div className='app-wrapper'>
-			<Header/>
-			<Navbar/>
+			<Header />
+			<Navbar />
 			<div className='content-wrapper'>
 
 				<Route path='/profile' render={() =>
-					<Profile/>
+					<Profile />
 				}/>
 
 				<Route path='/dialogs' render={() =>
-					<Dialogs
-						store={props.store}/>
+					<Dialogs />
 				}/>
 
 				<Route path='/news' component={News}/>

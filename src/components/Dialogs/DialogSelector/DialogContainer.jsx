@@ -1,14 +1,17 @@
 import React from "react";
+import {connect} from "react-redux";
+
 import DialogSelector from "./DialogSelector";
 
-const DialogContainer = (props) => {
+let mapStateToProps = (state) => {
+	return {
+		dialogs: state.dialogsPage.dialogs
+	}
+};
+// let mapDispatchToProps = (dispatch) => {
+// 	return {}
+// }
 
-	let state = props.store.getState()
-
-	return (
-		<DialogSelector
-			dialogs={state.dialogsPage.dialogs}/>
-	)
-}
+const DialogContainer = connect(mapStateToProps)(DialogSelector);
 
 export default DialogContainer;
