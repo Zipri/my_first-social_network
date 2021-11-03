@@ -1,5 +1,6 @@
-import React from 'react'
-import s from './MyPosts.module.css'
+import React from 'react';
+
+import s from './MyPosts.module.css';
 import Post from "./Post/Post";
 
 const MyPosts = (props) => {
@@ -8,18 +9,18 @@ const MyPosts = (props) => {
 		.map(p => <Post
 			message={p.message}
 			likes={p.likes}
-			id={p.id}/>)
+			id={p.id}/>);
 
-	let newPostEl = React.createRef()
+	let newPostEl = React.createRef();
 
 	let addPost = () => {
 		props.addNewPost()
-	}
+	};
 
 	let onPostChange = () => {
 		let text = newPostEl.current.value
 		props.changeNewPost(text)
-	}
+	};
 
 	return (
 		<div className={s.myPosts}>
@@ -36,6 +37,6 @@ const MyPosts = (props) => {
 			</div>
 		</div>
 	)
-}
+};
 
 export default MyPosts;
