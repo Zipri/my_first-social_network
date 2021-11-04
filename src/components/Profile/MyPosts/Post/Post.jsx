@@ -6,7 +6,7 @@ const Post = (props) => {
 		<div className={s.post}>
 			<img src='https://goldenmost.ru/wp-content/uploads/2017/07/Kon2.jpg'/>
 			<div className={s.postText}>
-				<div>{props.message}</div>
+				<div>{props.postMessage}</div>
 				<div className={s.likes}> 👍 {props.likes}</div>
 			</div>
 		</div>

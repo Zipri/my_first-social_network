@@ -7,7 +7,7 @@ const MyPosts = (props) => {
 
 	let postsEl = props.posts
 		.map(p => <Post
-			message={p.message}
+			postMessage={p.postMessage}
 			likes={p.likes}
 			id={p.id}/>);
 

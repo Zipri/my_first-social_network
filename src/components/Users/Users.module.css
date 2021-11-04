@@ -1,0 +1,70 @@
+.users {
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
+.flex {
+    display: flex;
+}
+
+.user {
+    width: 555px;
+    margin-bottom: 10px;
+    display: flex;
+    border-radius: 10px;
+    background-color: #deb48c;
+}
+.user img {
+    width: 100px;
+    height: 100px;
+    border-radius: 10%;
+}
+
+.userTextDescription {
+    width: 100%;
+    margin-left: 10px;
+}
+
+.userFullName {
+    font-family: "Book Antiqua";
+    font-size: 25px;
+    color: #5f3e10;
+}
+
+.userStatus {
+    margin-top: 5px;
+    font-family: Calibri;
+    font-style: italic;
+    font-size: 18px;
+    color: #596166;
+}
+
+.userLocation {
+    float: right;
+    padding-right: 5px;
+    font-family: Calibri;
+}
+.userLocation splan {
+    display: flex;
+}
+
+.cityCountry {
+    color: #b39413;
+    text-align: end;
+}
+
+.userCityCountry {
+    margin-left: 5px;
+    margin-right: 5px;
+    color: #5f3e10;
+}
+
+.button {
+    margin-left: 10px;
+    border: 0px;
+    border-radius: 10px;
+    background-color: #deb48c;
+    padding: 7px;
+    font-family: Arial;
+}
+
