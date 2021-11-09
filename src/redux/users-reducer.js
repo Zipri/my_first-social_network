@@ -3,7 +3,8 @@ const FOLLOW = 'FOLLOW'
 const UNFOLLOW = 'UNFOLLOW'
 
 let initialState = {
-	users: [{
+	users: [
+		/*{
 		id: 1,
 		followed: true,
 		firstName: 'Кирилл',
@@ -52,7 +53,7 @@ let initialState = {
 		lastName: '10000101',
 		status: '10111010110',
 		location: {city: '01', country: '10'}
-	},],
+	},*/],
 };
 
 const usersReducer = (state = initialState, action) => {
