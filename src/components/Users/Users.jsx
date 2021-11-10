@@ -42,20 +42,26 @@ let UserLabel = (props) => {
 	</div>
 }
 
-const Users = (props) => {
-	if (props.users.length === 0) {
+class Users extends React.Component {
+	constructor(props) {
+		super(props);
 		axios.get("https://social-network.samuraijs.com/api/1.0/users").then(response => {
-			props.setUsers(response.data.items)
+			this.props.setUsers(response.data.items)
 		})
 	}
-	return <div className={s.users}>
-		{props.users.map(u =>
-			<div key={u.id} className={s.flex}>
-				<UserLabel u={u} />
-				<Button p={props} u={u} />
-			</div>
-		)}
-	</div>
-};
+
+	render() {
+		return <div className={s.users}>
+			{this.props.users.map(u =>
+				<div key={u.id} className={s.flex}>
+					<UserLabel u={u} />
+					<Button p={this.props} u={u} />
+				</div>
+			)}
+		</div>
+	}
+}
+
+
 
 export default Users;
