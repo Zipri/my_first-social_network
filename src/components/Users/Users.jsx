@@ -1,5 +1,4 @@
 import React from 'react';
-import axios from "axios";
 
 import s from './Users.module.css';
 
@@ -16,8 +15,11 @@ let Button = (props) => {
 };
 let UserLabel = (props) => {
 	return <div className={s.user}>
-		<img src='https://slovnet.ru/wp-content/uploads/2018/12/7-67.jpg'/>
-		{/*TODO сделать аватарку по дефолту ... != null ? ... : "http//..."*/}
+		<div>
+			<img src={props.u.photos.large != null
+				? `${props.u.photos.large}`
+				: 'https://slovnet.ru/wp-content/uploads/2018/12/7-67.jpg'} />
+		</div>
 		<div className={s.userTextDescription}>
 			<div className={s.userFullName}>
 				{/*{props.u.firstName + ' ' + props.u.lastName}*/}
@@ -41,50 +43,34 @@ let UserLabel = (props) => {
 		</div>
 	</div>
 };
-
-class Users extends React.Component {
-
-	componentDidMount() {
-		axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
-			.then(response => {
-				this.props.setUsers(response.data.items)
-				this.props.setTotalUsersCount(response.data.totalCount)
-		})
-	}
-	onPageChanged = (pageNumber) => {
-		this.props.setPage(pageNumber)
-		axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`)
-			.then(response => {
-				this.props.setUsers(response.data.items)
-		})
-	}
-
-	render() {
-
-		let pagesCount = Math.ceil(this.props.totalUsersCount/this.props.pageSize)
-		let pages = []
-		for (let i = 1; i <= pagesCount; i++) {pages.push(i)}
-
-		return <div className={s.users}>
-			<div>
-				{pages.map(p => <span>
+let PageSlider = (props) => {
+	return <div>
+		<button>❮</button>
+		{props.pages.map(p => <span>
 					<button
-						onClick={() => this.onPageChanged(p)}
-						className={this.props.currentPage === p && s.selected}>
+						onClick={() => props.onPageChanged(p)}
+						className={props.currentPage === p && s.selected}>
 							{p}
 					</button>
 				</span>)}
+		<button>❯</button>
+	</div>
+};
+
+const Users = (props) => {
+
+	return <div className={s.users}>
+		<PageSlider
+			pages={props.pages}
+			onPageChanged={props.onPageChanged}
+			currentPage={props.currentPage} />
+		{props.users.map(u =>
+			<div key={u.id} className={s.flex}>
+				<UserLabel u={u} />
+				<Button p={props} u={u} />
 			</div>
-			{this.props.users.map(u =>
-				<div key={u.id} className={s.flex}>
-					<UserLabel u={u} />
-					<Button p={this.props} u={u} />
-				</div>
-			)}
-		</div>
-	}
+		)}
+	</div>
 }
-
-
 
 export default Users;

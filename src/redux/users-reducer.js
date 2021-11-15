@@ -63,8 +63,10 @@ let initialState = {
 
 const usersReducer = (state = initialState, action) => {
 	switch (action.type) {
+
 		case SET_USERS:
 			return {...state, users: action.users}
+
 		case FOLLOW:
 			return {
 				...state,
@@ -73,6 +75,7 @@ const usersReducer = (state = initialState, action) => {
 					return u
 				})
 			}
+
 		case UNFOLLOW:
 			return {
 				...state,
@@ -81,10 +84,13 @@ const usersReducer = (state = initialState, action) => {
 					return u
 				})
 			}
+
 		case SET_CURRENT_PAGE:
 			return {...state, currentPage: action.currentPage}
+
 		case SET_TOTAL_COUNT_USERS:
 			return {...state, totalUsersCount: action.totalUsersCount}
+
 		default:
 			return state
 	}
