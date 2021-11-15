@@ -1,8 +1,9 @@
-const SET_USERS = 'SET-USERS'
-const FOLLOW = 'FOLLOW'
-const UNFOLLOW = 'UNFOLLOW'
-const SET_CURRENT_PAGE = 'SET-CURRENT-PAGE'
-const SET_TOTAL_COUNT_USERS = 'SET-TOTAL-COUNT-USERS'
+const SET_USERS = 'SET-USERS';
+const FOLLOW = 'FOLLOW';
+const UNFOLLOW = 'UNFOLLOW';
+const SET_CURRENT_PAGE = 'SET-CURRENT-PAGE';
+const SET_TOTAL_COUNT_USERS = 'SET-TOTAL-COUNT-USERS';
+const TOGGLE_IS_FETCHING = 'TOGGLE-IS-FETCHING';
 
 let initialState = {
 	users: [
@@ -56,9 +57,10 @@ let initialState = {
 		status: '10111010110',
 		location: {city: '01', country: '10'}
 	},*/],
-	pageSize: 10,
+	pageSize: 8,
 	totalUsersCount: 0,
-	currentPage: 1
+	currentPage: 1,
+	isFetching: false
 };
 
 const usersReducer = (state = initialState, action) => {
@@ -71,7 +73,9 @@ const usersReducer = (state = initialState, action) => {
 			return {
 				...state,
 				users: state.users.map(u => {
-					if (u.id === action.userId) {return {...u, followed: true}}
+					if (u.id === action.userId) {
+						return {...u, followed: true}
+					}
 					return u
 				})
 			}
@@ -80,7 +84,9 @@ const usersReducer = (state = initialState, action) => {
 			return {
 				...state,
 				users: state.users.map(u => {
-					if (u.id === action.userId) {return {...u, followed: false}}
+					if (u.id === action.userId) {
+						return {...u, followed: false}
+					}
 					return u
 				})
 			}
@@ -90,6 +96,9 @@ const usersReducer = (state = initialState, action) => {
 
 		case SET_TOTAL_COUNT_USERS:
 			return {...state, totalUsersCount: action.totalUsersCount}
+
+		case TOGGLE_IS_FETCHING:
+			return {...state, isFetching: action.isFetching}
 
 		default:
 			return state
@@ -103,3 +112,4 @@ export const followAC = (userId) => ({type: FOLLOW, userId});
 export const unfollowAC = (userId) => ({type: UNFOLLOW, userId});
 export const currentPageAC = (currentPage) => ({type: SET_CURRENT_PAGE, currentPage});
 export const totalUsersCountAC = (totalUsersCount) => ({type: SET_TOTAL_COUNT_USERS, totalUsersCount});
+export const isFetchingAC = (isFetching) => ({type: TOGGLE_IS_FETCHING, isFetching})
