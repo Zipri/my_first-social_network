@@ -1,15 +1,16 @@
 import React from 'react';
 
 import s from './MyPosts.module.css';
-import Post from "./Post/Post";
+
+const Post = (props) => <div className={s.post}>
+	<img src='https://goldenmost.ru/wp-content/uploads/2017/07/Kon2.jpg'/>
+	<div className={s.postText}>
+		<div>{props.postMessage}</div>
+		<div className={s.likes}> 👍 {props.likes}</div>
+	</div>
+</div>
 
 const MyPosts = (props) => {
-
-	let postsEl = props.posts
-		.map(p => <Post
-			postMessage={p.postMessage}
-			likes={p.likes}
-			id={p.id}/>);
 
 	let newPostEl = React.createRef();
 
@@ -33,7 +34,13 @@ const MyPosts = (props) => {
 				<button onClick={addPost}>+</button>
 			</div>
 			<div>
-				{postsEl}
+				{props.posts
+					.map(p =>
+						<Post
+							postMessage={p.postMessage}
+							likes={p.likes}
+							id={p.id}/>
+					)}
 			</div>
 		</div>
 	)

@@ -13,7 +13,7 @@ import {
 import Users from "./Users";
 import Preloader from "../common/Preloader/Preloader";
 
-class UsersAPI extends React.Component {
+class UsersContainer extends React.Component {
 	componentDidMount() {
 		this.props.toggleIsFetching(true)
 		axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
@@ -52,7 +52,7 @@ class UsersAPI extends React.Component {
 						 followUser={this.props.followUser}/>
 		</>
 	}
-}
+};
 
 let mapStateToProps = (state) => {
 	return {
@@ -64,9 +64,7 @@ let mapStateToProps = (state) => {
 	}
 };
 
-const UsersContainer = connect(
+export default connect(
 	mapStateToProps,
 	{setUsers, followUser, unfollowUser, setCurrentPage, setTotalUsersCount, toggleIsFetching})
-(UsersAPI);
-
-export default UsersContainer;
+(UsersContainer);;

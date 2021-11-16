@@ -3,7 +3,6 @@
 
     padding: 10px;
 }
-
 .addPost {
     padding-bottom: 10px;
     display: flex;
@@ -26,4 +25,29 @@
     border-radius: 50%;
     font-size: 30px;
     font-family: Serif;
+}
+/*<Post />*/
+.post {
+    width: 555px;
+    margin-bottom: 10px;
+    display: flex;
+    border-radius: 10px;
+    background-color: #deb48c;
+}
+.post img {
+    width: 50px;
+    height: 50px;
+    border-radius: 20%;
+}
+.post div {
+    padding-left: 5px;
+}
+.likes {
+    float: right;
+    padding-right: 5px;
+}
+.postText {
+    width: 100%;
+    padding-bottom: 5px;
+    color: #5f3e10;
 }
