@@ -29,17 +29,17 @@ let initialState = {
 
 const profileReducer = (state = initialState, action) => {
 	switch (action.type) {
+
 		case ADD_POST:
 			return {
 				...state,
 				newPostText: '',
 				posts: [...state.posts, {id: 6, postMessage: state.newPostText, likes: 1337}]
 			}
+
 		case UPDATE_NEW_POST:
-			return {
-				...state,
-				newPostText: action.newPText
-			}
+			return {...state, newPostText: action.newPText}
+
 		default:
 			return state
 	}
@@ -47,5 +47,5 @@ const profileReducer = (state = initialState, action) => {
 
 export default profileReducer;
 
-export const addPostActionCreator = () => ({type: ADD_POST});
-export const updateNewPostTextActionCreator = (text) => ({type: UPDATE_NEW_POST, newPText: text});
+export const addPost = () => ({type: ADD_POST});
+export const updateNewPostBody = (text) => ({type: UPDATE_NEW_POST, newPText: text});

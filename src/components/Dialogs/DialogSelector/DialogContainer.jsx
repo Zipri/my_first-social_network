@@ -8,9 +8,6 @@ let mapStateToProps = (state) => {
 		dialogs: state.dialogsPage.dialogs
 	}
 };
-// let mapDispatchToProps = (dispatch) => {
-// 	return {}
-// }
 
 const DialogContainer = connect(mapStateToProps)(DialogSelector);
 

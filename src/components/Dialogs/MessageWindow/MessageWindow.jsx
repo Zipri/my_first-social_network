@@ -12,11 +12,11 @@ const MessageWindow = (props) => {
 	let newMessageEl = React.createRef()
 
 	let sendMessage = () => {
-		props.sendNewMessage()
+		props.sendMessage()
 	}
 	let onMessageChange = () => {
 		let text = newMessageEl.current.value
-		props.changeNewMessage(text)
+		props.updateMessageBody(text)
 	}
 
 	return (
