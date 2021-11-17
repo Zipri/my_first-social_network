@@ -37,7 +37,7 @@ class UsersContainer extends React.Component {
 	render() {
 		let pagesCount = Math.ceil(this.props.totalUsersCount / this.props.pageSize)
 		let pages = []
-		for (let i = 100; i <= 120; i++) {
+		for (let i = 700; i <= 707; i++) {
 			pages.push(i)
 		}
 		pages.push(pagesCount)

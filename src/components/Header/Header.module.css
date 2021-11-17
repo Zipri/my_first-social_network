@@ -5,3 +5,19 @@
 .header img {
     height: 60px;
 }
+
+.loginBlock {
+    margin-top: 10px;
+    margin-right: 20px;
+    float: right;
+    font-family: "Book Antiqua";
+    font-size: 30px;
+}
+.loginBlock a {
+    text-decoration: none;
+    color: antiquewhite;
+}
+.loginBlock a:hover {
+    text-decoration: none;
+    color: #004dbf;
+}
