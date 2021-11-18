@@ -1,6 +1,5 @@
 import React from 'react';
 import {connect} from "react-redux";
-import axios from "axios";
 
 import {
 	followUser,
@@ -12,32 +11,32 @@ import {
 } from "../../redux/users-reducer";
 import Users from "./Users";
 import Preloader from "../common/Preloader/Preloader";
+import {usersApi} from "../../api/api";
+
 
 class UsersContainer extends React.Component {
 	componentDidMount() {
 		this.props.toggleIsFetching(true)
-		axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
-			.then(response => {
-				this.props.toggleIsFetching(false)
-				this.props.setUsers(response.data.items)
-				this.props.setTotalUsersCount(response.data.totalCount)
-			})
+		usersApi.getUsers(this.props.currentPage, this.props.pageSize).then(data => {
+			this.props.toggleIsFetching(false)
+			this.props.setUsers(data.items)
+			this.props.setTotalUsersCount(data.totalCount)
+		})
 	}
 
 	onPageChanged = (pageNumber) => {
 		this.props.toggleIsFetching(true)
 		this.props.setCurrentPage(pageNumber)
-		axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`)
-			.then(response => {
-				this.props.toggleIsFetching(false)
-				this.props.setUsers(response.data.items)
-			})
+		usersApi.getUsers(pageNumber, this.props.pageSize).then(data => {
+			this.props.toggleIsFetching(false)
+			this.props.setUsers(data.items)
+		})
 	}
 
 	render() {
 		let pagesCount = Math.ceil(this.props.totalUsersCount / this.props.pageSize)
 		let pages = []
-		for (let i = 700; i <= 707; i++) {
+		for (let i = 900; i <= 907; i++) {
 			pages.push(i)
 		}
 		pages.push(pagesCount)
@@ -54,6 +53,7 @@ class UsersContainer extends React.Component {
 	}
 };
 
+
 let mapStateToProps = (state) => {
 	return {
 		users: state.usersPage.users,
@@ -67,4 +67,5 @@ let mapStateToProps = (state) => {
 export default connect(
 	mapStateToProps,
 	{setUsers, followUser, unfollowUser, setCurrentPage, setTotalUsersCount, toggleIsFetching})
-(UsersContainer);;
+(UsersContainer);
+;

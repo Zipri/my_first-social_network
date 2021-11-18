@@ -1,28 +1,49 @@
 import React from 'react';
 import {NavLink} from "react-router-dom";
 
+import {usersApi} from "../../api/api";
+
 import s from './Users.module.css';
+
+
+let UnfollowButton = (props) => {
+	return <button
+		className={s.button}
+		onClick={() =>
+			usersApi.unfollowUser(props.u.id).then(data => {
+				if (data.resultCode === 0) props.p.unfollowUser(props.u.id)
+			})}>❌ Unfollow
+	</button>
+};
+let FollowButton = (props) => {
+	return <button
+		className={s.button}
+		onClick={() => {
+			usersApi.followUser(props.u.id).then(data => {
+					if (data.resultCode === 0) props.p.followUser(props.u.id)
+				})
+		}}>✔️ Follow
+	</button>
+};
 
 let Button = (props) => {
 	return <div>
 		<div>
-			{props.u.followed
-				? <button
-					className={s.button}
-					onClick={() => props.p.unfollowUser(props.u.id)}>❌ Unfollow</button>
-				: <button
-					className={s.button}
-					onClick={() => props.p.followUser(props.u.id)}>✔️ Follow</button>}
+			{props.user.followed
+				? <UnfollowButton u={props.user} p={props.p}/>
+				: <FollowButton u={props.user} p={props.p}/>}
 		</div>
 		<div>
-			<NavLink to={"/profile/"+props.u.id} target="_blank"><button className={s.button}>New tab</button></NavLink>
+			<NavLink to={"/profile/" + props.user.id} target="_blank">
+				<button className={s.button}>New tab</button>
+			</NavLink>
 			{/*	TODO переделай этот позор..............*/}
 		</div>
 	</div>
 };
 let UserLabel = (props) => {
 	return <div className={s.user}>
-		<NavLink to={"/profile/"+props.u.id} className={s.min}>
+		<NavLink to={"/profile/" + props.u.id} className={s.min}>
 			<img src={props.u.photos.large != null
 				? props.u.photos.large
 				: 'https://slovnet.ru/wp-content/uploads/2018/12/7-67.jpg'}/>
@@ -74,13 +95,13 @@ const Users = (props) => {
 			pages={props.pages}
 			onPageChanged={props.onPageChanged}
 			currentPage={props.currentPage}/>
-		{props.users.map(u =>
-			<div key={u.id} className={s.flex}>
-				<UserLabel u={u}/>
-				<Button p={props} u={u}/>
+		{props.users.map(user =>
+			<div key={user.id} className={s.flex}>
+				<UserLabel u={user}/>
+				<Button p={props} user={user}/>
 			</div>
 		)}
 	</div>
-}
+};
 
 export default Users;
