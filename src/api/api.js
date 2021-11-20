@@ -12,6 +12,11 @@ export const usersApi = {
 		return instance.get(`users?page=${currentPage}&count=${pageSize}`)
 			.then(response => response.data)
 	},
+	getFriends () {
+		return instance.get(`users?friend=${true}&count=100`)
+			//TODO если больше 100 френдов - не все отобразятся
+			.then(response => response.data)
+	},
 	unfollowUser (userId) {
 		return instance.delete(`follow/${userId}`)
 			.then(response => response.data)

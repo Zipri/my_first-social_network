@@ -1,37 +1,34 @@
 import React from 'react';
 import {NavLink} from "react-router-dom";
 
-import {usersApi} from "../../api/api";
-
 import s from './Users.module.css';
 
-
-let UnfollowButton = (props) => {
-	return <button
-		className={s.button}
-		onClick={() =>
-			usersApi.unfollowUser(props.u.id).then(data => {
-				if (data.resultCode === 0) props.p.unfollowUser(props.u.id)
-			})}>❌ Unfollow
-	</button>
-};
 let FollowButton = (props) => {
 	return <button
 		className={s.button}
-		onClick={() => {
-			usersApi.followUser(props.u.id).then(data => {
-					if (data.resultCode === 0) props.p.followUser(props.u.id)
-				})
-		}}>✔️ Follow
+		disabled={props.followingInProgress.some(id => id === props.userId)}
+		onClick={() => props.followingUser(props.userId)}>✔️ Follow
 	</button>
 };
-
+let UnfollowButton = (props) => {
+	return <button
+		className={s.button}
+		disabled={props.followingInProgress.some(id => id === props.userId)}
+		onClick={() => props.unfollowingUser(props.userId)}>❌ Unfollow
+	</button>
+};
 let Button = (props) => {
 	return <div>
 		<div>
 			{props.user.followed
-				? <UnfollowButton u={props.user} p={props.p}/>
-				: <FollowButton u={props.user} p={props.p}/>}
+				? <UnfollowButton
+					userId={props.user.id}
+					followingInProgress={props.followingInProgress}
+					unfollowingUser={props.unfollowingUser}/>
+				: <FollowButton
+					userId={props.user.id}
+					followingInProgress={props.followingInProgress}
+					followingUser={props.followingUser}/>}
 		</div>
 		<div>
 			<NavLink to={"/profile/" + props.user.id} target="_blank">
@@ -73,9 +70,8 @@ let UserLabel = (props) => {
 	</div>
 };
 let PageSlider = (props) => {
-	return <div>
+	return <div className={s.slider}>
 		<button className={s.pageButton}>❮</button>
-
 		{props.pages.map(p => <span>
 					<button
 						onClick={() => props.onPageChanged(p)}
@@ -83,24 +79,44 @@ let PageSlider = (props) => {
 							{p}
 					</button>
 				</span>)}
-
 		<button className={s.pageButton}>❯</button>
 	</div>
 };
 
 const Users = (props) => {
 
-	return <div className={s.users}>
-		<PageSlider
-			pages={props.pages}
-			onPageChanged={props.onPageChanged}
-			currentPage={props.currentPage}/>
-		{props.users.map(user =>
-			<div key={user.id} className={s.flex}>
-				<UserLabel u={user}/>
-				<Button p={props} user={user}/>
-			</div>
-		)}
+	return <div className={s.flex}>
+		<div className={s.users}>
+			<div className={s.label}>Guys:</div>
+			<PageSlider
+				pages={props.pages}
+				onPageChanged={props.onPageChanged}
+				currentPage={props.currentPage}/>
+			{props.users.map(user =>
+				<div key={user.id} className={s.flex}>
+					<UserLabel u={user}/>
+					<Button
+						user={user}
+						followingInProgress={props.followingInProgress}
+						followingUser={props.followingUser}
+						unfollowingUser={props.unfollowingUser}/>
+				</div>
+			)}
+		</div>
+		<div className={s.friends}>
+			<div className={s.label}>Friends:</div>
+			{props.friends.map(friends => {
+				if (friends.followed)
+					return <div key={friends.id} className={s.flex}>
+						<UserLabel u={friends}/>
+						<Button
+							user={friends}
+							followingInProgress={props.followingInProgress}
+							followingUser={props.followingUser}
+							unfollowingUser={props.unfollowingUser}/>
+					</div>
+			})}
+		</div>
 	</div>
 };
 
