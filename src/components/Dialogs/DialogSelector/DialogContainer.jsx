@@ -1,5 +1,6 @@
 import React from "react";
 import {connect} from "react-redux";
+import {compose} from "redux";
 
 import DialogSelector from "./DialogSelector";
 import {withAuthRedirect} from "../../../hoc/withAuthRedirect";
@@ -10,4 +11,7 @@ let mapStateToProps = (state) => {
 	}
 };
 
-export default connect(mapStateToProps)(withAuthRedirect(DialogSelector))
+export default compose(
+	connect(mapStateToProps),
+	withAuthRedirect)
+(DialogSelector);
