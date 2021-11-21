@@ -1,7 +1,8 @@
 import React from "react";
-import s from './Dialogs.module.css'
+
 import MessageContainer from "./MessageWindow/MessageContainer";
 import DialogContainer from "./DialogSelector/DialogContainer";
+import s from './Dialogs.module.css'
 
 const Dialogs = (props) => {
 	return (
@@ -10,6 +11,6 @@ const Dialogs = (props) => {
 			<MessageContainer />
 		</div>
 	)
-}
+};
 
 export default Dialogs;
