@@ -30,11 +30,11 @@ class UsersContainer extends React.Component {
 		let pages = []
 		for (let i = 800; i <= 807; i++) pages.push(i)
 		pages.push(pagesCount)
-debugger
 		return <>
 			{this.props.isFetching
 				? <Preloader/>
 				: <Users
+					isAuth={this.props.isAuth}
 					pages={pages}
 					onPageChanged={this.onPageChanged}
 					currentPage={this.props.currentPage}
@@ -50,6 +50,7 @@ debugger
 
 let mapStateToProps = (state) => {
 	return {
+		isAuth: state.auth.isAuth,
 		users: state.usersPage.users,
 		friends: state.usersPage.friends,
 		pageSize: state.usersPage.pageSize,

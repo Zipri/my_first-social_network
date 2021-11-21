@@ -7,8 +7,9 @@ import ProfileContainer from "./components/Profile/ProfileContainer";
 import Dialogs from "./components/Dialogs/Dialogs";
 import News from "./components/News/News";
 import Music from "./components/Music/Music";
-import Settings from "./components/Settings/Settings";
 import UsersContainer from "./components/Users/UsersContainer";
+import Settings from "./components/Settings/Settings";
+import Login from "./components/Login/Login";
 
 import './App.css';
 
@@ -25,6 +26,7 @@ const App = (props) => {
 				<Route path='/music' component={Music}/>
 				<Route path='/users' render={() => <UsersContainer />}/>
 				<Route path='/settings' component={Settings}/>
+				<Route path='/login' render={() => <Login />}/>
 			</div>
 		</div>
 	);

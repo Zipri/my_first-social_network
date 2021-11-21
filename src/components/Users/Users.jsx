@@ -104,9 +104,10 @@ const Users = (props) => {
 			)}
 		</div>
 		<div className={s.friends}>
-			<div className={s.label}>Friends:</div>
+			<div className={s.label}>{props.isAuth ? "Friends:" : "Please Login to see your friends"}</div>
 			{props.friends.map(friends => {
 				if (friends.followed)
+					//TODO зачем здесь эта проверка? мы же уже френдов имеем в этом списке
 					return <div key={friends.id} className={s.flex}>
 						<UserLabel u={friends}/>
 						<Button

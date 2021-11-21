@@ -1,15 +1,14 @@
 import React from "react";
-import s from './DialogSelector.module.css'
+import {Redirect} from "react-router-dom";
+
 import DialogItem from "./DialogItem/DialogItem";
+import s from './DialogSelector.module.css'
 
 const DialogSelector = (props) => {
-
-	let dialogsEl = props.dialogs
-		.map(d => <DialogItem name={d.name} id={d.id}/>);
-
+	if (!props.isAuth) return <Redirect to={"/login"} />
 	return (
 		<div className={s.dialogs}>
-			{dialogsEl}
+			{props.dialogs.map(d => <DialogItem name={d.name} id={d.id}/>)}
 		</div>
 	)
 }
