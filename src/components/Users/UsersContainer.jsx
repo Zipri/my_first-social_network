@@ -33,16 +33,15 @@ class UsersContainer extends React.Component {
 		return <>
 			{this.props.isFetching
 				? <Preloader/>
-				: <Users
-					isAuth={this.props.isAuth}
-					pages={pages}
-					onPageChanged={this.onPageChanged}
-					currentPage={this.props.currentPage}
-					users={this.props.users}
-					friends={this.props.friends}
-					followingUser={this.followingUser}
-					unfollowingUser={this.unfollowingUser}
-					followingInProgress={this.props.followingInProgress}/>}
+				: <Users isAuth={this.props.isAuth}
+								 pages={pages}
+								 onPageChanged={this.onPageChanged}
+								 currentPage={this.props.currentPage}
+								 users={this.props.users}
+								 friends={this.props.friends}
+								 followingUser={this.followingUser}
+								 unfollowingUser={this.unfollowingUser}
+								 followingInProgress={this.props.followingInProgress}/>}
 		</>
 	}
 };

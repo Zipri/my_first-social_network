@@ -3,7 +3,8 @@ import s from "./ProfileInfo.module.css";
 
 class UserStatus extends React.Component {
 	state = {
-		editMode: false
+		editMode: false,
+		bufStatus: this.props.status
 	}
 
 	activateEditMode = () => {
@@ -15,13 +16,24 @@ class UserStatus extends React.Component {
 		this.setState({
 			editMode: false
 		})
+		this.props.updateStatus(this.state.bufStatus)
+	}
+	onStatusChange = (e) => {
+		this.setState({bufStatus: e.currentTarget.value})
 	}
 
 	render() {
 		return <div className={s.status}>
 			{!this.state.editMode
-				? <div onClick={this.activateEditMode}>{this.props.status}</div>
-				: <input autoFocus onBlur={this.deactivateEditMode} value={this.props.status} />
+				? <div
+						className={s.notActive}
+						onClick={this.activateEditMode}>{this.props.status || "..."}</div>
+				: <input
+						onChange={this.onStatusChange}
+						autoFocus
+						className={s.active}
+						onBlur={this.deactivateEditMode}
+						value={this.state.bufStatus} />
 			}
 		</div>
 	}

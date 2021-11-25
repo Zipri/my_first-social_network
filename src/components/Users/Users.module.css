@@ -4,7 +4,8 @@
 }
 .friends {
     height: min-content;
-    margin-top: 10px;
+    margin-top: 20px;
+    margin-bottom: 20px;
     margin-left: 150px;
     background-color: #e9f0fe;
     border-radius: 20px;

@@ -4,31 +4,27 @@ import {NavLink} from "react-router-dom";
 import s from './Users.module.css';
 
 let FollowButton = (props) => {
-	return <button
-		className={s.button}
-		disabled={props.followingInProgress.some(id => id === props.userId)}
-		onClick={() => props.followingUser(props.userId)}>✔️ Follow
+	return <button className={s.button}
+								 disabled={props.followingInProgress.some(id => id === props.userId)}
+								 onClick={() => props.followingUser(props.userId)}>✔️ Follow
 	</button>
 };
 let UnfollowButton = (props) => {
-	return <button
-		className={s.button}
-		disabled={props.followingInProgress.some(id => id === props.userId)}
-		onClick={() => props.unfollowingUser(props.userId)}>❌ Unfollow
+	return <button className={s.button}
+								 disabled={props.followingInProgress.some(id => id === props.userId)}
+								 onClick={() => props.unfollowingUser(props.userId)}>❌ Unfollow
 	</button>
 };
 let Button = (props) => {
 	return <div>
 		<div>
 			{props.user.followed
-				? <UnfollowButton
-					userId={props.user.id}
-					followingInProgress={props.followingInProgress}
-					unfollowingUser={props.unfollowingUser}/>
-				: <FollowButton
-					userId={props.user.id}
-					followingInProgress={props.followingInProgress}
-					followingUser={props.followingUser}/>}
+				? <UnfollowButton userId={props.user.id}
+													followingInProgress={props.followingInProgress}
+													unfollowingUser={props.unfollowingUser}/>
+				: <FollowButton userId={props.user.id}
+												followingInProgress={props.followingInProgress}
+												followingUser={props.followingUser}/>}
 		</div>
 		<div>
 			<NavLink to={"/profile/" + props.user.id} target="_blank">
@@ -88,18 +84,16 @@ const Users = (props) => {
 	return <div className={s.flex}>
 		<div className={s.users}>
 			<div className={s.label}>Guys:</div>
-			<PageSlider
-				pages={props.pages}
-				onPageChanged={props.onPageChanged}
-				currentPage={props.currentPage}/>
+			<PageSlider pages={props.pages}
+									onPageChanged={props.onPageChanged}
+									currentPage={props.currentPage}/>
 			{props.users.map(user =>
 				<div key={user.id} className={s.flex}>
 					<UserLabel u={user}/>
-					<Button
-						user={user}
-						followingInProgress={props.followingInProgress}
-						followingUser={props.followingUser}
-						unfollowingUser={props.unfollowingUser}/>
+					<Button user={user}
+									followingInProgress={props.followingInProgress}
+									followingUser={props.followingUser}
+									unfollowingUser={props.unfollowingUser}/>
 				</div>
 			)}
 		</div>

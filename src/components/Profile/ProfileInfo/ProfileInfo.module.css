@@ -21,6 +21,22 @@
     border-radius: 10px;
     background-color: #deb48c;
 }
+.active {
+    height: min-content;
+    width: 90%;
+    padding: 20px;
+    font-family: Calibri;
+    font-size: 18px;
+}
+.notActive {
+    height: min-content;
+    padding: 5px 5px 5px 20px;
+    border-radius: 6px;
+    background-color: antiquewhite;
+    font-family: Calibri;
+    font-style: italic;
+    font-size: 18px;
+}
 /*<Buttons />*/
 .buttons {
     grid-area: buttons;
@@ -29,7 +45,7 @@
 }
 .button {
     width: 75px;
-    height: 40px;
+    height: 49px;
     margin-right: 15px;
     border: 0px;
     border-radius: 10px;
@@ -38,7 +54,7 @@
 }
 .pbutton {
     width: 75px;
-    height: 40px;
+    height: 49px;
     border: 0px;
     border-radius: 10px;
     background-color: #deb48c;

@@ -2,6 +2,7 @@ import React from "react";
 import Preloader from "../../common/Preloader/Preloader";
 import UserStatus from "./ProfileStatus";
 import s from "./ProfileInfo.module.css";
+import {NavLink} from "react-router-dom";
 
 
 const UserPart = (props) => <div className={s.userPart}>
@@ -38,21 +39,35 @@ const LinksArea = (props) => <div className={s.links}>
 	)}
 	{/*	TODO ебать ты просто гений*/}
 </div>
-const FollowButton = (props) => <button className={s.button}>
-	✔️ Follow
+
+const FollowButton = (props) => <button
+	className={s.button}
+	disabled={props.followingInProgress.some(id => id === props.userId)}
+	onClick={() => props.followingUser(props.userId)}>✔️ Follow
 </button>
-const UnfollowButton = (props) => <button className={s.button}>
-	❌ Unfollow
+
+const UnfollowButton = (props) => <button
+	className={s.button}
+	disabled={props.followingInProgress.some(id => id === props.userId)}
+	onClick={() => props.unfollowingUser(props.userId)}>❌ Unfollow
 </button>
-let t = true
+
 const Buttons = (props) => <div className={s.buttons}>
+	{/*TODO ну и нахуй страницу обнавлять, чтобы, чтобы измнения увидеть?
+	*/}
 	<div>
-		{!t
-			? <UnfollowButton/>
-			: <FollowButton/>}
+		{props.Followed
+			? <UnfollowButton userId={props.userId}
+												followingInProgress={props.followingInProgress}
+												unfollowingUser={props.unfollowingUser}/>
+			: <FollowButton userId={props.userId}
+											followingInProgress={props.followingInProgress}
+											followingUser={props.followingUser}/>}
 	</div>
 	<button className={s.button}>Copy link</button>
-	<button className={s.pbutton}>My Profile</button>
+	{/*TODO и как это сделать?*/}
+	<NavLink to={"/users"}><button className={s.pbutton}>Back to users</button></NavLink>
+	{/*	TODO переделай этот позор.............. и придумай, как сделать для открытия своего профиля*/}
 </div>
 
 const ProfileInfo = (props) => {
@@ -62,8 +77,14 @@ const ProfileInfo = (props) => {
 	return <div className={s.profileInfo}>
 		<UserPart profile={props.profile}/>
 		<LinksArea contacts={props.profile.contacts}/>
-		<UserStatus status={"new status"}/>
-		<Buttons/>
+		<UserStatus status={props.status}
+								updateStatus={props.updateStatus}/>
+		<Buttons followingUser={props.followingUser}
+						 unfollowingUser={props.unfollowingUser}
+						 Followed={props.Followed}
+						 userId={props.profile.userId}
+						 followingInProgress={props.followingInProgress}/>
+	{/*					 TODO Buttons - это повторение кода получается (как  в юзерах), получается - зашквар = выноси в отдельную компоненте или чет типа того*/}
 	</div>
 }
 

@@ -1,12 +1,16 @@
-import {profileApi} from "../api/api";
+import {profileApi, UnFollowUser} from "../api/api";
 
-const ADD_POST = 'ADD-POST'
-const UPDATE_NEW_POST = 'UPDATE-NEW-POST'
-const SET_USER_PROFILE = 'SET-USER-PROFILE'
+const ADD_POST = 'ADD-POST';
+const UPDATE_NEW_POST = 'UPDATE-NEW-POST';
+const SET_USER_PROFILE = 'SET-USER-PROFILE';
+const SET_PROFILE_STATUS = 'SET-PROFILE-STATUS';
+const IS_FOLLOWED = 'IS-FOLLOWED';
 
 let initialState = {
 	profile: null,
 	newPostText: '',
+	status: '',
+	Followed: null,
 	posts: [
 		{id: 1, postMessage: 'Hello world', likes: 4},
 		{id: 2, postMessage: '何かのいくつかの種類の性交の説明', likes: 300},
@@ -47,6 +51,12 @@ const profileReducer = (state = initialState, action) => {
 		case SET_USER_PROFILE:
 			return {...state, profile: action.profile}
 
+		case SET_PROFILE_STATUS:
+			return {...state, status: action.status}
+
+		case IS_FOLLOWED:
+			return {...state, Followed: action.Followed}
+
 		default:
 			return state
 	}
@@ -54,11 +64,28 @@ const profileReducer = (state = initialState, action) => {
 
 export default profileReducer;
 
-export const getUserProfileThunkCreator = (userId) => (dispatch) => {
-	profileApi.getUserProfile(userId)
-		.then(data => dispatch(setProfile(data)))
-}
-
 export const setProfile = (profile) => ({type: SET_USER_PROFILE, profile});
 export const addPost = () => ({type: ADD_POST});
 export const updateNewPostBody = (text) => ({type: UPDATE_NEW_POST, newPText: text});
+export const setProfileStatus = (status) => ({type: SET_PROFILE_STATUS, status});
+export const isFollowed = (Followed) => ({type: IS_FOLLOWED, Followed})
+
+export const getUserProfileThunkCreator = (userId) => (dispatch) => {
+	profileApi.getUserProfile(userId)
+		.then(data => dispatch(setProfile(data)))
+};
+export const getProfileStatusThunkCreator = (userId) => (dispatch) => {
+	profileApi.getProfileStatus(userId)
+		.then(data => dispatch(setProfileStatus(data)))
+};
+export const updateProfileStatusThunkCreator = (status) => (dispatch) => {
+	profileApi.updateProfileStatus(status)
+		.then(response => {
+			if (response.data.resultCode === 0) dispatch(setProfileStatus(status))
+		}
+	)
+};
+export const isFollowedThunkCreator = (userId) => (dispatch) => {
+	UnFollowUser.getIsFollowed(userId)
+		.then(data => dispatch(isFollowed(data)))
+};

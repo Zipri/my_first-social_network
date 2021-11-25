@@ -17,16 +17,16 @@ import './App.css';
 const App = (props) => {
 	return (
 		<div className='app-wrapper'>
-			<HeaderContainer />
-			<Navbar />
+			<HeaderContainer/>
+			<Navbar/>
 			<div className='content-wrapper'>
-				<Route path='/profile/:userId?' render={() => <ProfileContainer />}/>
-				<Route path='/dialogs' render={() => <Dialogs />}/>
+				<Route path='/profile/:userId?' render={() => <ProfileContainer/>}/>
+				<Route path='/dialogs' render={() => <Dialogs/>}/>
 				<Route path='/news' component={News}/>
 				<Route path='/music' component={Music}/>
-				<Route path='/users' render={() => <UsersContainer />}/>
+				<Route path='/users' render={() => <UsersContainer/>}/>
 				<Route path='/settings' component={Settings}/>
-				<Route path='/login' render={() => <Login />}/>
+				<Route path='/login' render={() => <Login/>}/>
 			</div>
 		</div>
 	);

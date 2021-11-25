@@ -124,6 +124,19 @@ const usersReducer = (state = initialState, action) => {
 
 export default usersReducer;
 
+export const setUsers = (users) => ({type: SET_USERS, users});
+export const setFriends = (friends) => ({type: SET_FRIENDS, friends});
+export const followUser = (userId) => ({type: FOLLOW, userId});
+export const unfollowUser = (userId) => ({type: UNFOLLOW, userId});
+export const setCurrentPage = (currentPage) => ({type: SET_CURRENT_PAGE, currentPage});
+export const setTotalUsersCount = (totalUsersCount) => ({type: SET_TOTAL_COUNT_USERS, totalUsersCount});
+export const toggleIsFetching = (isFetching) => ({type: TOGGLE_IS_FETCHING, isFetching});
+export const toggleFollowingProgress = (isFetching, userId) => ({
+	type: TOGGLE_IS_FOLLOWING_PROGRESS,
+	isFetching,
+	userId
+});
+
 export const getUsersThunkCreator = (currentPage, pageSize) => {
 	return (dispatch) => {
 		dispatch(toggleIsFetching(true))
@@ -138,7 +151,6 @@ export const getFriendsThunkCreator = () => {
 	return (dispatch) => {
 		dispatch(toggleIsFetching(true))
 		usersApi.getFriends().then(data => {
-			debugger
 			dispatch(toggleIsFetching(false))
 			dispatch(setFriends(data.items))
 			dispatch(setTotalUsersCount(data.totalCount))
@@ -164,15 +176,3 @@ export const unfollowUserThunkCreator = (userId) => {
 	}
 };
 
-export const setUsers = (users) => ({type: SET_USERS, users});
-export const setFriends = (friends) => ({type: SET_FRIENDS, friends});
-export const followUser = (userId) => ({type: FOLLOW, userId});
-export const unfollowUser = (userId) => ({type: UNFOLLOW, userId});
-export const setCurrentPage = (currentPage) => ({type: SET_CURRENT_PAGE, currentPage});
-export const setTotalUsersCount = (totalUsersCount) => ({type: SET_TOTAL_COUNT_USERS, totalUsersCount});
-export const toggleIsFetching = (isFetching) => ({type: TOGGLE_IS_FETCHING, isFetching});
-export const toggleFollowingProgress = (isFetching, userId) => ({
-	type: TOGGLE_IS_FOLLOWING_PROGRESS,
-	isFetching,
-	userId
-});

@@ -27,10 +27,33 @@ export const usersApi = {
 	}
 };
 
+export const UnFollowUser = {
+	//TODO переделай остальных под это
+	unfollowUser (userId) {
+		return instance.delete(`follow/${userId}`)
+			.then(response => response.data)
+	},
+	followUser (userId) {
+		return instance.post(`follow/${userId}`)
+			.then(response => response.data)
+	},
+	getIsFollowed (userId) {
+		return instance.get(`follow/${userId}`)
+			.then(response => response.data)
+	}
+}
+
 export const profileApi = {
 	getUserProfile (userId) {
 		return instance.get(`profile/${userId}`)
 			.then(response => response.data)
+	},
+	getProfileStatus (userId) {
+		return instance.get(`profile/status/${userId}`)
+			.then(response => response.data)
+	},
+	updateProfileStatus (status) {
+		return instance.put(`profile/status`, {status: status})
 	}
 };
 
