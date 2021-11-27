@@ -43,6 +43,12 @@ const Navbar = () => {
 				</NavLink>
 			</div>
 
+			<div className={s.item}>
+				<NavLink to="/login" activeClassName={s.active}>
+					Login
+				</NavLink>
+			</div>
+
 		</nav>
 	)
 }
