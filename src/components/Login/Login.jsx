@@ -20,9 +20,7 @@ const LoginForm = (props) => {
 const LoginReduxForm = reduxForm({form: 'login'}) (LoginForm)
 
 const Login = (props) => {
-	let onSubmit = (formData) => {
-
-	}
+	let onSubmit = (formData) => {}
 	return <div>
 		<h1>Please Login</h1>
 		<LoginReduxForm onSubmit={onSubmit}/>

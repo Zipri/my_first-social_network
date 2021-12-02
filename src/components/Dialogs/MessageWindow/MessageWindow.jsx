@@ -1,37 +1,27 @@
 import React from "react";
-import s from './MessageWindow.module.css'
+import {Field, reduxForm} from "redux-form";
+
 import Message from "./Message/Message";
+import s from './MessageWindow.module.css';
+
+
+const MessageForm = (props) => {
+	return <form onSubmit={props.handleSubmit} className={s.sendMess}>
+		<Field name={"messageBody"}
+					 component={"textarea"}
+					 placeholder="Write a message..."
+		/>
+		<button><img src='https://img.icons8.com/ios/452/paper-plane.png'/></button>
+	</form>
+}
+const MessageReduxForm = reduxForm({form: "dialogMessageForm"})(MessageForm)
 
 const MessageWindow = (props) => {
-
-	let messagesEl = props.messages
-		.map(m => <Message
-			message={m.message}
-			id={m.id} />);
-
-	let newMessageEl = React.createRef()
-
-	let sendMessage = () => {
-		props.sendMessage()
-	}
-	let onMessageChange = () => {
-		let text = newMessageEl.current.value
-		props.updateMessageBody(text)
-	}
-
+	let sendNewMessage = (values) => props.sendMessage(values.messageBody)
 	return (
 		<div className={s.messages}>
-			{messagesEl}
-			<div className={s.sendMess}>
-				<textarea
-					placeholder="Write a message..."
-					ref={newMessageEl}
-					value={props.newMessageText}
-					onChange={onMessageChange}/>
-				<button onClick={sendMessage}>
-					<img src='https://img.icons8.com/ios/452/paper-plane.png'/>
-				</button>
-			</div>
+			{props.messages.map(m => <Message message={m.message} id={m.id}/>)}
+			<MessageReduxForm onSubmit={sendNewMessage}/>
 		</div>
 	)
 }

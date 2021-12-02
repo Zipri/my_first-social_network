@@ -25,12 +25,6 @@ class ProfileContainer extends React.Component {
 	unfollowingUser = (userId) =>
 		this.props.unfollowUserThunkCreator(userId)
 
-	// unfollowingUser = (userId) => {
-	// 	this.props.isFollowedThunkCreator(userId)
-	// 	return this.props.unfollowUserThunkCreator(userId)
-	// }
-
-
 	render() {
 		return <Profile  {...this.props}
 										 profile={this.props.profile}

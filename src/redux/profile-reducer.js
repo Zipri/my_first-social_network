@@ -8,7 +8,6 @@ const IS_FOLLOWED = 'IS-FOLLOWED';
 
 let initialState = {
 	profile: null,
-	newPostText: '',
 	status: '',
 	Followed: null,
 	posts: [
@@ -41,12 +40,8 @@ const profileReducer = (state = initialState, action) => {
 		case ADD_POST:
 			return {
 				...state,
-				newPostText: '',
-				posts: [...state.posts, {id: 6, postMessage: state.newPostText, likes: 1337}]
+				posts: [...state.posts, {id: 6, postMessage: action.newPostBody, likes: 1337}]
 			}
-
-		case UPDATE_NEW_POST:
-			return {...state, newPostText: action.newPText}
 
 		case SET_USER_PROFILE:
 			return {...state, profile: action.profile}
@@ -65,8 +60,7 @@ const profileReducer = (state = initialState, action) => {
 export default profileReducer;
 
 export const setProfile = (profile) => ({type: SET_USER_PROFILE, profile});
-export const addPost = () => ({type: ADD_POST});
-export const updateNewPostBody = (text) => ({type: UPDATE_NEW_POST, newPText: text});
+export const addPost = (newPostBody) => ({type: ADD_POST, newPostBody});
 export const setProfileStatus = (status) => ({type: SET_PROFILE_STATUS, status});
 export const isFollowed = (Followed) => ({type: IS_FOLLOWED, Followed})
 
