@@ -1,0 +1,14 @@
+.error {
+    border: 4px red solid;
+}
+.errorMessage {
+    padding: 10px;
+    background-color: #f16767;
+    border-radius: 10px;
+    font-size: 30px;
+    font-family: Serif;
+    height: min-content;
+    position: absolute;
+    left: 50px;
+    top: 400px
+}
