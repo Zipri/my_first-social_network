@@ -21,3 +21,11 @@
     text-decoration: none;
     color: #004dbf;
 }
+.logoutB {
+    float: right;
+}
+.logoutB img {
+    margin-top: 5px;
+    margin-right: 10px;
+    height: 50px;
+}
