@@ -30,6 +30,7 @@ const LoginForm = (props) => {
 			<Field name={"rememberMe"} component={"input"} type={"checkbox"}/> Remember me
 		</div>
 		<button>Login</button>
+		{props.error}
 	</form>
 }
 

@@ -15,7 +15,7 @@ import {followUserThunkCreator, unfollowUserThunkCreator} from "../../redux/user
 class ProfileContainer extends React.Component {
 	componentDidMount() {
 		let userId = this.props.match.params.userId
-		if (!userId) userId = 20847
+		if (!userId) userId = this.props.authUserId
 		this.props.getUserProfileThunkCreator(userId)
 		this.props.getProfileStatusThunkCreator(userId)
 		this.props.isFollowedThunkCreator(userId)
@@ -38,6 +38,8 @@ class ProfileContainer extends React.Component {
 };
 
 let mapStateToProps = (state) => ({
+	authUserId: state.auth.userId,
+	isAuth: state.auth.isAuth,
 	profile: state.profilePage.profile,
 	status: state.profilePage.status,
 	Followed: state.profilePage.Followed,
