@@ -1,5 +1,7 @@
+import {createSelector} from "reselect";
 //Users
-export const getUsers = (state) => state.usersPage.users
+const simpleUsersSelector = (state) => state.usersPage.users
+export const getUsers = createSelector(simpleUsersSelector, (users) => users)
 export const getPageSize = (state) => state.usersPage.pageSize
 export const getFriends = (state) => state.usersPage.friends
 export const getTotalUsersCount = (state) => state.usersPage.totalUsersCount

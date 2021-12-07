@@ -10,57 +10,7 @@ const TOGGLE_IS_FETCHING = 'TOGGLE-IS-FETCHING';
 const TOGGLE_IS_FOLLOWING_PROGRESS = 'TOGGLE-IS-FOLLOWING-PROGRESS';
 
 let initialState = {
-	users: [
-		/*{
-		id: 1,
-		followed: true,
-		firstName: 'Кирилл',
-		lastName: 'Сероштан',
-		status: 'Future Senior',
-		location: {city: 'Москва', country: 'Россия'}
-	}, {
-		id: 2,
-		followed: true,
-		firstName: 'Ангелина',
-		lastName: 'Тельман',
-		status: 'Je suis une sirène',
-		location: {city: 'Москва', country: 'Россия'}
-	}, {
-		id: 3,
-		followed: true,
-		firstName: 'Матвей',
-		lastName: 'Светозаров',
-		status: 'Хачу машинку',
-		location: {city: 'Москва', country: 'Россия'}
-	}, {
-		id: 4,
-		followed: false,
-		firstName: 'John',
-		lastName: 'Winchester',
-		status: 'Died twice',
-		location: {city: 'Kansas', country: 'United States'}
-	}, {
-		id: 5,
-		followed: false,
-		firstName: 'Чёрт',
-		lastName: 'Паршивый',
-		status: 'From tabakerka',
-		location: {city: 'Где-то', country: 'Рядом'}
-	},{
-		id: 6,
-		followed: false,
-		firstName: 'أنطون',
-		lastName: 'السلاف',
-		status: 'حمداً لله',
-		location: {city: 'إيفانوفو', country: 'سلوفينيا'}
-	},{
-		id: 7,
-		followed: true,
-		firstName: '10101',
-		lastName: '10000101',
-		status: '10111010110',
-		location: {city: '01', country: '10'}
-	},*/],
+	users: [],
 	friends: [],
 	pageSize: 8,
 	totalUsersCount: 0,
