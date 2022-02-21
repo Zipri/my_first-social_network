@@ -3,7 +3,7 @@ const SEND_MESSAGE = 'SEND-MESSAGE'
 let initialState = {
 	dialogs: [
 		{id: 1, name: 'Антон'},
-		{id: 2, name: 'Ангелина'},
+		{id: 2, name: 'Настя (лисёнок)'},
 		{id: 3, name: 'Кот'},
 		{id: 4, name: 'Кирилл'},
 		{id: 5, name: 'Яша'},

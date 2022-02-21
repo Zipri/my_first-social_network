@@ -7,37 +7,37 @@ import s from './MyPosts.module.css';
 
 
 const Post = (props) => <div className={s.post}>
-	<img src='https://goldenmost.ru/wp-content/uploads/2017/07/Kon2.jpg'/>
-	<div className={s.postText}>
-		<div>{props.postMessage}</div>
-		<div className={s.likes}> 👍 {props.likes}</div>
-	</div>
+    <img src='https://goldenmost.ru/wp-content/uploads/2017/07/Kon2.jpg'/>
+    <div className={s.postText}>
+        <div>{props.postMessage}</div>
+        <div className={s.likes}> 👍 {props.likes}</div>
+    </div>
 </div>
 
 const Textarea = Element("textarea")
 const maxLength50 = maxLengthCreator(50)
 const MyPostsForm = (props) => {
-	return <form onSubmit={props.handleSubmit} className={s.addPost}>
-		<Field name={"newPostBody"}
-					 component={Textarea}
-					 placeholder="Write a new post..."
-					 validate={[requiredField, maxLength50]}
-		/>
-		<button>+</button>
-	</form>
+    return <form onSubmit={props.handleSubmit} className={s.addPost}>
+        <Field name={"newPostBody"}
+               component={Textarea}
+               placeholder="Write a new post..."
+               validate={[requiredField, maxLength50]}
+        />
+        <button>+</button>
+    </form>
 }
 const MyPostsReduxForm = reduxForm({form: "profileNewPostForm"})(MyPostsForm)
 
 const MyPosts = (props) => {
-	let addPost = (values) => props.addPost(values.newPostBody)
-	return (
-		<div className={s.myPosts}>
-			<MyPostsReduxForm onSubmit={addPost}/>
-			{props.posts.map(p => <Post postMessage={p.postMessage}
-																	likes={p.likes}
-																	id={p.id}/>)}
-		</div>
-	)
+    let addPost = (values) => props.addPost(values.newPostBody)
+    return (
+        <div className={s.myPosts}>
+            <MyPostsReduxForm onSubmit={addPost}/>
+            {props.posts.map(p => <Post postMessage={p.postMessage}
+                                        likes={p.likes}
+                                        id={p.id}/>)}
+        </div>
+    )
 };
 
 export default MyPosts;

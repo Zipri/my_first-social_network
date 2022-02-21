@@ -104,7 +104,8 @@ export const getFriendsThunkCreator = () => {
 		usersApi.getFriends().then(data => {
 			dispatch(toggleIsFetching(false))
 			dispatch(setFriends(data.items))
-			dispatch(setTotalUsersCount(data.totalCount))
+			//dispatch(setTotalUsersCount(data.totalCount))
+		//	TODO зачем здесь диспатчить setTotalUsersCount(data.totalCount)????
 		})
 	}
 };
