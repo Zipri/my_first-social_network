@@ -15,7 +15,7 @@ import {
     getPageSize,
     getTotalUsersCount,
     getUsers
-} from "../../redux/users-selectors";
+} from "../../redux/getters-selectors";
 
 
 class UsersContainer extends React.Component {
@@ -40,6 +40,7 @@ class UsersContainer extends React.Component {
         pages.push(pagesCount)
         return <>
             {this.props.isFetching
+                //TODO добавить везде эту хуету с прелодарем
                 ? <Preloader/>
                 : <Users isAuth={this.props.isAuth}
                          pages={pages}

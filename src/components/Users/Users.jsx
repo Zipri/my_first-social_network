@@ -9,12 +9,15 @@ const FollowButton = (props) => {
                    onClick={() => props.followingUser(props.userId)}>✔️ Follow
     </button>
 };
+
 const UnfollowButton = (props) => {
     return <button className={s.button}
                    disabled={props.followingInProgress.some(id => id === props.userId)}
                    onClick={() => props.unfollowingUser(props.userId)}>❌ Unfollow
     </button>
 };
+//TODO заебал код дулбировать - исправляй нахуй эту ссанину ещё и в profile
+
 const Button = (props) => {
     return <div>
         <div>
@@ -34,6 +37,7 @@ const Button = (props) => {
         </div>
     </div>
 };
+
 const UserLabel = (props) => {
     return <div className={s.user}>
         <NavLink to={"/profile/" + props.u.id} className={s.min}>
@@ -65,6 +69,7 @@ const UserLabel = (props) => {
         </div>
     </div>
 };
+
 const PageSlider = (props) => {
     return <div className={s.slider}>
         <button className={s.pageButton}>❮</button>
@@ -78,6 +83,7 @@ const PageSlider = (props) => {
         <button className={s.pageButton}>❯</button>
     </div>
 };
+
 const UsersList = (props) => {
     return <div className={s.users}>
         <div className={s.label}>Guys:</div>
@@ -94,24 +100,22 @@ const UsersList = (props) => {
             </div>
         )}
     </div>
-}
+};
+
 const FriendsList = (props) => {
     return <div className={s.friends}>
         <div className={s.label}>{props.isAuth ? "Friends:" : "Please Login to see your friends"}</div>
         {props.friends.map(friends => {
-            //if (friends.followed)
-            //TODO зачем здесь эта проверка? мы же уже френдов имеем в этом списке
             return <div key={friends.id} className={s.flex}>
                 <UserLabel u={friends}/>
-                <Button
-                    user={friends}
-                    followingInProgress={props.followingInProgress}
-                    followingUser={props.followingUser}
-                    unfollowingUser={props.unfollowingUser}/>
+                <Button user={friends}
+                        followingInProgress={props.followingInProgress}
+                        followingUser={props.followingUser}
+                        unfollowingUser={props.unfollowingUser}/>
             </div>
         })}
     </div>
-}
+};
 
 const Users = (props) => {
     return <div className={s.flex}>

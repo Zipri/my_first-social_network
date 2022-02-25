@@ -13,15 +13,15 @@ const Background = () => <div className={s.background}>
 const Profile = (props) => {
     return (
         <div className={s.profileWrapper}>
-            <Background />
+            <Background/>
             <ProfileInfo profile={props.profile}
                          status={props.status}
                          updateStatus={props.updateStatus}
                          followingUser={props.followingUser}
                          unfollowingUser={props.unfollowingUser}
-                         Followed={props.Followed}
+                         followed={props.followed}
                          followingInProgress={props.followingInProgress}/>
-            <MyPostsContainer />
+            <MyPostsContainer/>
         </div>
     )
 };

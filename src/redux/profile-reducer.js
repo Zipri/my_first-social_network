@@ -1,7 +1,6 @@
 import {profileApi, UnFollowUser} from "../api/api";
 
 const ADD_POST = 'ADD-POST';
-const UPDATE_NEW_POST = 'UPDATE-NEW-POST';
 const SET_USER_PROFILE = 'SET-USER-PROFILE';
 const SET_PROFILE_STATUS = 'SET-PROFILE-STATUS';
 const IS_FOLLOWED = 'IS-FOLLOWED';
@@ -9,7 +8,7 @@ const IS_FOLLOWED = 'IS-FOLLOWED';
 let initialState = {
 	profile: null,
 	status: '',
-	Followed: null,
+	followed: null,
 	posts: [
 		{id: 1, postMessage: 'Hello world', likes: 4},
 		{id: 2, postMessage: '何かのいくつかの種類の性交の説明', likes: 300},
@@ -50,7 +49,7 @@ const profileReducer = (state = initialState, action) => {
 			return {...state, status: action.status}
 
 		case IS_FOLLOWED:
-			return {...state, Followed: action.Followed}
+			return {...state, followed: action.followed}
 
 		default:
 			return state
@@ -62,7 +61,7 @@ export default profileReducer;
 export const setProfile = (profile) => ({type: SET_USER_PROFILE, profile});
 export const addPost = (newPostBody) => ({type: ADD_POST, newPostBody});
 export const setProfileStatus = (status) => ({type: SET_PROFILE_STATUS, status});
-export const isFollowed = (Followed) => ({type: IS_FOLLOWED, Followed})
+export const isFollowed = (followed) => ({type: IS_FOLLOWED, followed})
 
 export const getUserProfileThunkCreator = (userId) => (dispatch) => {
 	profileApi.getUserProfile(userId)

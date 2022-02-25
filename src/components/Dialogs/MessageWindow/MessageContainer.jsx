@@ -3,10 +3,11 @@ import {connect} from "react-redux";
 
 import MessageWindow from "./MessageWindow";
 import {sendMessage} from "../../../redux/dialogs-reducer";
+import {getMessages} from "../../../redux/getters-selectors";
 
 let mapStateToProps = (state) => {
 	return {
-		messages: state.dialogsPage.messages
+		messages: getMessages(state)
 	}
 }
 

@@ -30,6 +30,7 @@ const UserPart = (props) => <div className={s.userPart}>
         </div>
     </div>
 </div>
+
 const LinksArea = (props) => <div className={s.links}>
     {Object.keys(props.contacts).map(key =>
         props.contacts[key]
@@ -40,23 +41,10 @@ const LinksArea = (props) => <div className={s.links}>
     {/*	TODO ебать ты просто гений*/}
 </div>
 
-const FollowButton = (props) => <button
-    className={s.button}
-    disabled={props.followingInProgress.some(id => id === props.userId)}
-    onClick={() => props.followingUser(props.userId)}>✔️ Follow
-</button>
-
-const UnfollowButton = (props) => <button
-    className={s.button}
-    disabled={props.followingInProgress.some(id => id === props.userId)}
-    onClick={() => props.unfollowingUser(props.userId)}>❌ Unfollow
-</button>
-
 const Buttons = (props) => <div className={s.buttons}>
-    {/*TODO ну и нахуй страницу обнавлять, чтобы, чтобы измнения увидеть?
-	*/}
+    {/*TODO ну и нахуй страницу обнавлять, чтобы, чтобы измнения увидеть?*/}
     <div>
-        {props.Followed
+        {props.followed
             ? <UnfollowButton userId={props.userId}
                               followingInProgress={props.followingInProgress}
                               unfollowingUser={props.unfollowingUser}/>
@@ -72,6 +60,19 @@ const Buttons = (props) => <div className={s.buttons}>
     {/*	TODO переделай этот позор.............. и придумай, как сделать для открытия своего профиля*/}
 </div>
 
+const FollowButton = (props) =>
+    <button className={s.button}
+            disabled={props.followingInProgress.some(id => id === props.userId)}
+            onClick={() => props.followingUser(props.userId)}>✔️ Follow
+    </button>
+
+const UnfollowButton = (props) =>
+    <button className={s.button}
+            disabled={props.followingInProgress.some(id => id === props.userId)}
+            onClick={() => props.unfollowingUser(props.userId)}>❌ Unfollow
+    </button>
+
+
 const ProfileInfo = (props) => {
     if (!props.profile) {
         return <Preloader/>
@@ -83,7 +84,7 @@ const ProfileInfo = (props) => {
                     updateStatus={props.updateStatus}/>
         <Buttons followingUser={props.followingUser}
                  unfollowingUser={props.unfollowingUser}
-                 Followed={props.Followed}
+                 followed={props.followed}
                  userId={props.profile.userId}
                  followingInProgress={props.followingInProgress}/>
         {/*	TODO Buttons - это повторение кода получается (как  в юзерах), получается - зашквар = выноси в отдельную компоненте или чет типа того*/}
