@@ -1,7 +1,7 @@
 import React from 'react'
 
 import MyPostsContainer from "./MyPosts/MyPostsContainer";
-import ProfileInfo from "./ProfileInfo/ProfileInfo";
+import ProfileInfoContainer from "./ProfileInfo/ProfileInfoContainer";
 
 import s from './Profile.module.css'
 
@@ -14,13 +14,7 @@ const Profile = (props) => {
     return (
         <div className={s.profileWrapper}>
             <Background/>
-            <ProfileInfo profile={props.profile}
-                         status={props.status}
-                         updateStatus={props.updateStatus}
-                         followingUser={props.followingUser}
-                         unfollowingUser={props.unfollowingUser}
-                         followed={props.followed}
-                         followingInProgress={props.followingInProgress}/>
+            <ProfileInfoContainer/>
             <MyPostsContainer/>
         </div>
     )

@@ -38,6 +38,6 @@ const MyPosts = (props) => {
                                         id={p.id}/>)}
         </div>
     )
-};
+}
 
 export default MyPosts;

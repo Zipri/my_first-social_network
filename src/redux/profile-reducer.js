@@ -1,6 +1,7 @@
 import {profileApi, UnFollowUser} from "../api/api";
 
 const ADD_POST = 'ADD-POST';
+const DELETE_POST = 'DELETE-POST';
 const SET_USER_PROFILE = 'SET-USER-PROFILE';
 const SET_PROFILE_STATUS = 'SET-PROFILE-STATUS';
 const IS_FOLLOWED = 'IS-FOLLOWED';
@@ -39,7 +40,13 @@ const profileReducer = (state = initialState, action) => {
 		case ADD_POST:
 			return {
 				...state,
-				posts: [...state.posts, {id: 6, postMessage: action.newPostBody, likes: 1337}]
+				posts: [...state.posts, {id: 8, postMessage: action.newPostBody, likes: 1337}]
+			}
+
+		case DELETE_POST:
+			return {
+				...state,
+				posts: state.posts.filter(post => post.id !== action.postId)
 			}
 
 		case SET_USER_PROFILE:
@@ -60,6 +67,7 @@ export default profileReducer;
 
 export const setProfile = (profile) => ({type: SET_USER_PROFILE, profile});
 export const addPost = (newPostBody) => ({type: ADD_POST, newPostBody});
+export const deletePost = (postId) => ({type: DELETE_POST, postId});
 export const setProfileStatus = (status) => ({type: SET_PROFILE_STATUS, status});
 export const isFollowed = (followed) => ({type: IS_FOLLOWED, followed})
 

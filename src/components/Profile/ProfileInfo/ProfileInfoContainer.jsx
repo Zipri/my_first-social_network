@@ -3,13 +3,13 @@ import {connect} from "react-redux";
 import {withRouter} from "react-router-dom";
 import {compose} from "redux";
 
-import Profile from "./Profile";
+import ProfileInfo from "./ProfileInfo";
 import {
     getProfileStatusThunkCreator,
     getUserProfileThunkCreator, isFollowedThunkCreator,
     updateProfileStatusThunkCreator
-} from "../../redux/profile-reducer";
-import {followUserThunkCreator, unfollowUserThunkCreator} from "../../redux/users-reducer";
+} from "../../../redux/profile-reducer";
+import {followUserThunkCreator, unfollowUserThunkCreator} from "../../../redux/users-reducer";
 import {
     getAuthUserId,
     getFollowed,
@@ -17,7 +17,7 @@ import {
     getIsAuth,
     getProfile,
     getStatus
-} from "../../redux/getters-selectors";
+} from "../../../redux/getters-selectors";
 
 
 class ProfileContainer extends React.Component {
@@ -38,14 +38,13 @@ class ProfileContainer extends React.Component {
         this.props.unfollowUserThunkCreator(userId)
 
     render() {
-        return <Profile  {...this.props}
-                         profile={this.props.profile}
-                         status={this.props.status}
-                         updateStatus={this.props.updateProfileStatusThunkCreator}
-                         followingUser={this.followingUser}
-                         unfollowingUser={this.unfollowingUser}
-                         followed={this.props.followed}
-                         followingInProgress={this.props.followingInProgress}/>
+        return <ProfileInfo profile={this.props.profile}
+                            status={this.props.status}
+                            updateStatus={this.props.updateProfileStatusThunkCreator}
+                            followingUser={this.followingUser}
+                            unfollowingUser={this.unfollowingUser}
+                            followed={this.props.followed}
+                            followingInProgress={this.props.followingInProgress}/>
     }
 };
 
