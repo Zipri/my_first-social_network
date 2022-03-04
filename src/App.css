@@ -12,5 +12,6 @@
 .content-wrapper {
     grid-area: c;
     background-color: antiquewhite;
-    height: min-content;
+    height: 100vh;
+    overflow: auto;
 }

@@ -12,8 +12,8 @@ import s from './Login.module.css';
 
 const Input = Element("input")
 const minLength6 = minLengthCreator(6)
-const LoginForm = (props) => {
-    return <form onSubmit={props.handleSubmit}>
+const LoginForm = ({handleSubmit, error}) => {
+    return <form onSubmit={handleSubmit}>
         <div>
             <Field name={"email"}
                    component={Input}
@@ -31,15 +31,15 @@ const LoginForm = (props) => {
             <Field name={"rememberMe"} component={"input"} type={"checkbox"}/> Remember me
         </div>
         <button>Login</button>
-        {props.error}
+        {error}
     </form>
 }
 
 const LoginReduxForm = reduxForm({form: 'login'})(LoginForm)
 
-const Login = (props) => {
-    const onSubmit = (formData) => props.loginThunkCreator(formData.email, formData.password, formData.rememberMe)
-    if (props.isAuth) return <Redirect to={"/profile"}/>
+const Login = ({isAuth, loginThunkCreator}) => {
+    const onSubmit = (formData) => loginThunkCreator(formData.email, formData.password, formData.rememberMe)
+    if (isAuth) return <Redirect to={"/profile"}/>
     return <div>
         <h1>Please Login</h1>
         <LoginReduxForm onSubmit={onSubmit}/>

@@ -5,6 +5,7 @@ import {compose} from "redux";
 
 import HeaderContainer from "./components/Header/HeaderContainer";
 import Navbar from "./components/Navbar/Navbar";
+import Profile from "./components/Profile/Profile";
 import Dialogs from "./components/Dialogs/Dialogs";
 import News from "./components/News/News";
 import UsersContainer from "./components/Users/UsersContainer";
@@ -16,7 +17,6 @@ import {initializeAppThunkCreator} from "./redux/app-reducer";
 import {getInitialized} from "./redux/getters-selectors";
 
 import './App.css';
-import Profile from "./components/Profile/Profile";
 
 
 class App extends React.Component {
