@@ -13,17 +13,17 @@ const Navbar = () => {
 				</NavLink>
 			</div>
 
-			<div className={s.item}>
-				<NavLink to="/dialogs" activeClassName={s.active}>
-					Messages
-				</NavLink>
-			</div>
+			{/*<div className={s.item}>*/}
+			{/*	<NavLink to="/dialogs" activeClassName={s.active}>*/}
+			{/*		Messages*/}
+			{/*	</NavLink>*/}
+			{/*</div>*/}
 
-			<div className={s.item}>
-				<NavLink to="/news" activeClassName={s.active}>
-					News
-				</NavLink>
-			</div>
+			{/*<div className={s.item}>*/}
+			{/*	<NavLink to="/news" activeClassName={s.active}>*/}
+			{/*		News*/}
+			{/*	</NavLink>*/}
+			{/*</div>*/}
 
 			<div className={s.item}>
 				<NavLink to="/users" activeClassName={s.active}>
@@ -31,11 +31,11 @@ const Navbar = () => {
 				</NavLink>
 			</div>
 
-			<div className={s.item}>
-				<NavLink to="/settings" activeClassName={s.active}>
-					Settings
-				</NavLink>
-			</div>
+			{/*<div className={s.item}>*/}
+			{/*	<NavLink to="/settings" activeClassName={s.active}>*/}
+			{/*		Settings*/}
+			{/*	</NavLink>*/}
+			{/*</div>*/}
 		{/*TODO добавить менюшку AntD и в разъезжание вкладки - френдлист небольшой и ещё что-нибудь*/}
 		</nav>
 	)

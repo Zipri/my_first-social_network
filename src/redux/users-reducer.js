@@ -3,19 +3,28 @@ import {updateObjectArray} from "./object-helper";
 
 const SET_USERS = 'users/SET-USERS';
 const SET_FRIENDS = 'users/SET-FRIENDS';
+
 const FOLLOW = 'users/FOLLOW';
 const UNFOLLOW = 'users/UNFOLLOW';
+
 const SET_CURRENT_PAGE = 'users/SET-CURRENT-PAGE';
 const SET_TOTAL_COUNT_USERS = 'users/SET-TOTAL-COUNT-USERS';
+const SET_CURRENT_FRIEND_PAGE = 'users/SET-CURRENT-FRIEND-PAGE';
+const SET_TOTAL_COUNT_FRIENDS = 'users/SET-TOTAL-COUNT-FRIENDS';
+
 const TOGGLE_IS_FETCHING = 'users/TOGGLE-IS-FETCHING';
 const TOGGLE_IS_FOLLOWING_PROGRESS = 'users/TOGGLE-IS-FOLLOWING-PROGRESS';
 
 let initialState = {
     users: [],
     friends: [],
+
     pageSize: 8,
     totalUsersCount: 0,
     currentPage: 1,
+    totalFriendsCount: 0,
+    currentFriendPage: 1,
+
     isFetching: false,
     followingInProgress: []
 };
@@ -55,6 +64,12 @@ const usersReducer = (state = initialState, action) => {
         case SET_TOTAL_COUNT_USERS:
             return {...state, totalUsersCount: action.totalUsersCount}
 
+        case SET_CURRENT_FRIEND_PAGE:
+            return {...state, currentFriendPage: action.currentFriendPage}
+
+        case SET_TOTAL_COUNT_FRIENDS:
+            return {...state, totalFriendsCount: action.totalFriendsCount}
+
         case TOGGLE_IS_FETCHING:
             return {...state, isFetching: action.isFetching}
 
@@ -75,10 +90,16 @@ export default usersReducer;
 
 export const setUsers = (users) => ({type: SET_USERS, users});
 export const setFriends = (friends) => ({type: SET_FRIENDS, friends});
+
 export const followUser = (userId) => ({type: FOLLOW, userId});
 export const unfollowUser = (userId) => ({type: UNFOLLOW, userId});
+
 export const setCurrentPage = (currentPage) => ({type: SET_CURRENT_PAGE, currentPage});
 export const setTotalUsersCount = (totalUsersCount) => ({type: SET_TOTAL_COUNT_USERS, totalUsersCount});
+
+export const setCurrentFriendPage = (currentFriendPage) => ({type: SET_CURRENT_FRIEND_PAGE, currentFriendPage});
+export const setTotalFriendsCount = (totalFriendsCount) => ({type: SET_TOTAL_COUNT_FRIENDS, totalFriendsCount});
+
 export const toggleIsFetching = (isFetching) => ({type: TOGGLE_IS_FETCHING, isFetching});
 export const toggleFollowingProgress = (isFetching, userId) => ({
     type: TOGGLE_IS_FOLLOWING_PROGRESS,
@@ -96,12 +117,14 @@ export const getUsersThunkCreator = (page, pageSize) => {
         dispatch(setTotalUsersCount(data.totalCount))
     }
 };
-export const getFriendsThunkCreator = () => {
+export const getFriendsThunkCreator = (page, pageSize) => {
     return async (dispatch) => {
         dispatch(toggleIsFetching(true))
-        let data = await usersApi.getFriends()
+        dispatch(setCurrentFriendPage(page))
+        let data = await usersApi.getFriends(page, pageSize)
         dispatch(toggleIsFetching(false))
         dispatch(setFriends(data.items))
+        dispatch(setTotalFriendsCount(data.totalCount))
     }
 };
 const followUnfollowFlow = async (dispatch, userId, apiMethod, actionCreator) => {

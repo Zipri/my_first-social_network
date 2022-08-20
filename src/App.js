@@ -32,10 +32,10 @@ class App extends React.Component {
                 <Navbar/>
                 <div className='content-wrapper'>
                     <Route path='/profile/:userId?' render={() => <Profile/>}/>
-                    <Route path='/dialogs' render={() => <Dialogs/>}/>
-                    <Route path='/news' component={News}/>
+                    {/*<Route path='/dialogs' render={() => <Dialogs/>}/>*/}
+                    {/*<Route path='/news' component={News}/>*/}
                     <Route path='/users' render={() => <UsersContainer/>}/>
-                    <Route path='/settings' component={Settings}/>
+                    {/*<Route path='/settings' component={Settings}/>*/}
                     <Route path='/login' render={() => <Login/>}/>
                 </div>
             </div>

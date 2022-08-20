@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {NavLink} from "react-router-dom";
 
 import s from './Users.module.css';
@@ -71,16 +71,35 @@ const UserLabel = (props) => {
 };
 
 const PageSlider = (props) => {
+    let portionSize = 7
+    let portionCount = Math.ceil(props.pages.length / portionSize)
+    let [portionNumber, setPortionNumber] = useState(1);
+    let left = (portionNumber - 1) * portionSize + 1
+    let right = portionNumber * portionSize
+
     return <div className={s.slider}>
-        <button className={s.pageButton}>❮</button>
-        {props.pages.map(p => <span>
+
+        {portionNumber > 1 &&
+            <button className={s.pageButton} onClick={() => setPortionNumber(1)}>❮❮</button>}
+        {portionNumber > 1 &&
+            <button className={s.pageButton} onClick={() => setPortionNumber(portionNumber - 1)}>❮</button>}
+
+        {
+            props.pages.filter(p => p >= left && p <= right)
+                .map(p => <span>
 					<button
                         onClick={() => props.onPageChanged(p)}
                         className={props.currentPage === p && s.selected || s.pageButton}>
 							{p}
 					</button>
-				</span>)}
-        <button className={s.pageButton}>❯</button>
+				</span>)
+        }
+
+        {portionNumber < portionCount &&
+            <button className={s.pageButton} onClick={() => setPortionNumber(portionNumber + 1)}>❯</button>}
+        {portionNumber < portionCount &&
+            <button className={s.pageButton} onClick={() => setPortionNumber(portionCount)}>❯❯</button>}
+
     </div>
 };
 
@@ -105,6 +124,9 @@ const UsersList = (props) => {
 const FriendsList = (props) => {
     return <div className={s.friends}>
         <div className={s.label}>{props.isAuth ? "Friends:" : "Please Login to see your friends"}</div>
+        <PageSlider pages={props.friendPages}
+                    onPageChanged={props.onFriendPageChanged}
+                    currentPage={props.currentFriendPage}/>
         {props.friends.map(friends => {
             return <div key={friends.id} className={s.flex}>
                 <UserLabel u={friends}/>
@@ -128,6 +150,9 @@ const Users = (props) => {
                    unfollowingUser={props.unfollowingUser}/>
         <FriendsList isAuth={props.isAuth}
                      friends={props.friends}
+                     friendPages={props.friendPages}
+                     onFriendPageChanged={props.onFriendPageChanged}
+                     currentFriendPage={props.currentFriendPage}
                      followingInProgress={props.followingInProgress}
                      followingUser={props.followingUser}
                      unfollowingUser={props.unfollowingUser}/>

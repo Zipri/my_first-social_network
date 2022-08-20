@@ -12,8 +12,8 @@ export const usersApi = {
 		return instance.get(`users?page=${currentPage}&count=${pageSize}`)
 			.then(response => response.data)
 	},
-	getFriends () {
-		return instance.get(`users?friend=${true}&count=100`)
+	getFriends (currentPage, pageSize) {
+		return instance.get(`users?friend=${true}&page=${currentPage}&count=${pageSize}`)
 			//TODO если больше 100 френдов - не все отобразятся
 			.then(response => response.data)
 	},
