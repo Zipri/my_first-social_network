@@ -1,35 +1,18 @@
 import React, {useState} from 'react';
 import {NavLink} from "react-router-dom";
 
+import FollowControl from "../common/FollowControl/FollowControl";
+
 import s from './Users.module.css';
-
-const FollowButton = (props) => {
-    //TODO вынести в common
-    return <button className={s.button}
-                   disabled={props.followingInProgress.some(id => id === props.userId)}
-                   onClick={() => props.followingUser(props.userId)}>✔️ Follow
-    </button>
-};
-
-const UnfollowButton = (props) => {
-    //TODO вынести в common
-    return <button className={s.button}
-                   disabled={props.followingInProgress.some(id => id === props.userId)}
-                   onClick={() => props.unfollowingUser(props.userId)}>❌ Unfollow
-    </button>
-};
-//TODO заебал код дулбировать - исправляй нахуй эту ссанину ещё и в profile
 
 const Button = (props) => {
     return <div>
         <div>
-            {props.user.followed
-                ? <UnfollowButton userId={props.user.id}
-                                  followingInProgress={props.followingInProgress}
-                                  unfollowingUser={props.unfollowingUser}/>
-                : <FollowButton userId={props.user.id}
-                                followingInProgress={props.followingInProgress}
-                                followingUser={props.followingUser}/>}
+            <FollowControl userId={props.user.id}
+                           userFollowed={props.user.followed}
+                           followingInProgress={props.followingInProgress}
+                           followingUser={props.followingUser}
+                           unfollowingUser={props.unfollowingUser}/>
         </div>
         <div>
             <NavLink to={"/profile/" + props.user.id} target="_blank">

@@ -3,6 +3,7 @@ import Preloader from "../../common/Preloader/Preloader";
 import UserStatus from "./ProfileStatus";
 import s from "./ProfileInfo.module.css";
 import {NavLink} from "react-router-dom";
+import FollowControl from "../../common/FollowControl/FollowControl";
 
 
 const UserPart = (props) => {
@@ -51,13 +52,11 @@ const LinksArea = (props) => <div className={s.links}>
 const Buttons = (props) => <div className={s.buttons}>
     {/*TODO ну и нахуй страницу обнавлять, чтобы, чтобы измнения увидеть?*/}
     <div>
-        {props.followed
-            ? <UnfollowButton userId={props.userId}
-                              followingInProgress={props.followingInProgress}
-                              unfollowingUser={props.unfollowingUser}/>
-            : <FollowButton userId={props.userId}
-                            followingInProgress={props.followingInProgress}
-                            followingUser={props.followingUser}/>}
+        <FollowControl userId={props.userId}
+                       userFollowed={props.followed}
+                       followingInProgress={props.followingInProgress}
+                       followingUser={props.followingUser}
+                       unfollowingUser={props.unfollowingUser}/>
     </div>
     <button className={s.button}>Copy link</button>
     {/*TODO и как это сделать?*/}
@@ -66,18 +65,6 @@ const Buttons = (props) => <div className={s.buttons}>
     </NavLink>
     {/*	TODO переделай этот позор.............. и придумай, как сделать для открытия своего профиля*/}
 </div>
-
-const FollowButton = (props) =>
-    <button className={s.button}
-            disabled={props.followingInProgress.some(id => id === props.userId)}
-            onClick={() => props.followingUser(props.userId)}>✔️ Follow
-    </button>
-
-const UnfollowButton = (props) =>
-    <button className={s.button}
-            disabled={props.followingInProgress.some(id => id === props.userId)}
-            onClick={() => props.unfollowingUser(props.userId)}>❌ Unfollow
-    </button>
 
 
 const ProfileInfo = (props) => {
@@ -96,7 +83,6 @@ const ProfileInfo = (props) => {
                  followed={props.followed}
                  userId={props.profile.userId}
                  followingInProgress={props.followingInProgress}/>}
-        {/*	TODO Buttons - это повторение кода получается (как  в юзерах), получается - зашквар = выноси в отдельную компоненте или чет типа того*/}
     </div>
 }
 
