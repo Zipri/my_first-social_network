@@ -5,31 +5,38 @@ import s from "./ProfileInfo.module.css";
 import {NavLink} from "react-router-dom";
 
 
-const UserPart = (props) => <div className={s.userPart}>
-    <div className={s.image}>
-        <img className={s.image} src={props.profile.photos.large != null
-            ? props.profile.photos.large
-            : 'https://otvet.imgsmail.ru/download/15f4035d0a54e730e4c24b7a574cb20b_i-33.jpg'}/>
+const UserPart = (props) => {
+
+    const onMainPhotoSelected = (e) => {
+        props.savePhoto(e.target.files[0])
+    }
+
+    return <div className={s.userPart}>
+        <div className={s.image}>
+            {props.isOwner && <input type={"file"} onChange={onMainPhotoSelected}/>}
+            <img className={s.image}
+                 src={props.profile.photos.large || 'https://otvet.imgsmail.ru/download/15f4035d0a54e730e4c24b7a574cb20b_i-33.jpg'}/>
+        </div>
+        <div className={s.description}>
+            <div className={s.descriptionArea}>
+                <div className={s.text}>Full name:</div>
+                <div>{props.profile.fullName}</div>
+            </div>
+            <div className={s.descriptionArea}>
+                <div className={s.text}>About me:</div>
+                <div>{props.profile.aboutMe}</div>
+            </div>
+            <div className={s.descriptionArea}>
+                <div className={s.text}>Looking for a job:</div>
+                <div>{props.profile.lookingForAJob ? "Yes" : "No"}</div>
+            </div>
+            <div className={s.descriptionArea}>
+                <div className={s.text}>Description:</div>
+                <div>{props.profile.lookingForAJobDescription}</div>
+            </div>
+        </div>
     </div>
-    <div className={s.description}>
-        <div className={s.descriptionArea}>
-            <div className={s.text}>Full name:</div>
-            <div>{props.profile.fullName}</div>
-        </div>
-        <div className={s.descriptionArea}>
-            <div className={s.text}>About me:</div>
-            <div>{props.profile.aboutMe}</div>
-        </div>
-        <div className={s.descriptionArea}>
-            <div className={s.text}>Looking for a job:</div>
-            <div>{props.profile.lookingForAJob ? "Yes" : "No"}</div>
-        </div>
-        <div className={s.descriptionArea}>
-            <div className={s.text}>Description:</div>
-            <div>{props.profile.lookingForAJobDescription}</div>
-        </div>
-    </div>
-</div>
+}
 
 const LinksArea = (props) => <div className={s.links}>
     {Object.keys(props.contacts).map(key =>
@@ -78,15 +85,17 @@ const ProfileInfo = (props) => {
         return <Preloader/>
     }
     return <div className={s.profileInfo}>
-        <UserPart profile={props.profile}/>
+        <UserPart profile={props.profile}
+                  isOwner={props.isOwner}
+                  savePhoto={props.savePhoto}/>
         <LinksArea contacts={props.profile.contacts}/>
         <UserStatus status={props.status}
                     updateStatus={props.updateStatus}/>
-        <Buttons followingUser={props.followingUser}
+        {!props.isOwner && <Buttons followingUser={props.followingUser}
                  unfollowingUser={props.unfollowingUser}
                  followed={props.followed}
                  userId={props.profile.userId}
-                 followingInProgress={props.followingInProgress}/>
+                 followingInProgress={props.followingInProgress}/>}
         {/*	TODO Buttons - это повторение кода получается (как  в юзерах), получается - зашквар = выноси в отдельную компоненте или чет типа того*/}
     </div>
 }

@@ -5,6 +5,7 @@ const DELETE_POST = 'profile/DELETE-POST';
 const SET_USER_PROFILE = 'profile/SET-USER-PROFILE';
 const SET_PROFILE_STATUS = 'profile/SET-PROFILE-STATUS';
 const IS_FOLLOWED = 'profile/IS-FOLLOWED';
+const SAVE_PHOTO_SUCCESS = 'profile/SAVE-PHOTO-SUCCESS';
 
 let initialState = {
     profile: null,
@@ -58,6 +59,9 @@ const profileReducer = (state = initialState, action) => {
         case IS_FOLLOWED:
             return {...state, followed: action.followed}
 
+        case SAVE_PHOTO_SUCCESS:
+            return {...state, profile: {...state.profile, photos: action.photos}}
+
         default:
             return state
     }
@@ -66,6 +70,7 @@ const profileReducer = (state = initialState, action) => {
 export default profileReducer;
 
 export const setProfile = (profile) => ({type: SET_USER_PROFILE, profile});
+export const savePhotoSuccess = (photos) => ({type: SAVE_PHOTO_SUCCESS, photos});
 export const addPost = (newPostBody) => ({type: ADD_POST, newPostBody});
 export const deletePost = (postId) => ({type: DELETE_POST, postId});
 export const setProfileStatus = (status) => ({type: SET_PROFILE_STATUS, status});
@@ -74,6 +79,10 @@ export const isFollowed = (followed) => ({type: IS_FOLLOWED, followed})
 export const getUserProfileThunkCreator = (userId) => async (dispatch) => {
     let data = await profileApi.getUserProfile(userId)
     dispatch(setProfile(data))
+};
+export const savePhoto = (file) => async (dispatch) => {
+    let response = await profileApi.savePhoto(file)
+    if (response.data.resultCode === 0) dispatch(savePhotoSuccess(response.data.data.photos))
 };
 export const getProfileStatusThunkCreator = (userId) => async (dispatch) => {
     let data = await profileApi.getProfileStatus(userId)

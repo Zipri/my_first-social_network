@@ -6,7 +6,7 @@ import {compose} from "redux";
 import ProfileInfo from "./ProfileInfo";
 import {
     getProfileStatusThunkCreator,
-    getUserProfileThunkCreator, isFollowedThunkCreator,
+    getUserProfileThunkCreator, isFollowedThunkCreator, savePhoto,
     updateProfileStatusThunkCreator
 } from "../../../redux/profile-reducer";
 import {followUserThunkCreator, unfollowUserThunkCreator} from "../../../redux/users-reducer";
@@ -21,7 +21,7 @@ import {
 
 
 class ProfileContainer extends React.Component {
-    componentDidMount() {
+    refreshProfile() {
         let userId = this.props.match.params.userId
         if (!userId) {
             userId = this.props.authUserId
@@ -32,6 +32,16 @@ class ProfileContainer extends React.Component {
         this.props.isFollowedThunkCreator(userId)
     }
 
+    componentDidMount() {
+        this.refreshProfile()
+    }
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (this.props.match.params.userId !== prevProps.match.params.userId) {
+            this.refreshProfile()
+        }
+    }
+
     followingUser = (userId) =>
         this.props.followUserThunkCreator(userId)
     unfollowingUser = (userId) =>
@@ -39,6 +49,8 @@ class ProfileContainer extends React.Component {
 
     render() {
         return <ProfileInfo profile={this.props.profile}
+                            isOwner={!this.props.match.params.userId}
+                            savePhoto={this.props.savePhoto}
                             status={this.props.status}
                             updateStatus={this.props.updateProfileStatusThunkCreator}
                             followingUser={this.followingUser}
@@ -63,7 +75,7 @@ export default compose(
         {
             getUserProfileThunkCreator,
             getProfileStatusThunkCreator, updateProfileStatusThunkCreator,
-            followUserThunkCreator, unfollowUserThunkCreator, isFollowedThunkCreator
+            followUserThunkCreator, unfollowUserThunkCreator, isFollowedThunkCreator, savePhoto
         }),
     withRouter)
 (ProfileContainer)

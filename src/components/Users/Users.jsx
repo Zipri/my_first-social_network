@@ -4,6 +4,7 @@ import {NavLink} from "react-router-dom";
 import s from './Users.module.css';
 
 const FollowButton = (props) => {
+    //TODO вынести в common
     return <button className={s.button}
                    disabled={props.followingInProgress.some(id => id === props.userId)}
                    onClick={() => props.followingUser(props.userId)}>✔️ Follow
@@ -11,6 +12,7 @@ const FollowButton = (props) => {
 };
 
 const UnfollowButton = (props) => {
+    //TODO вынести в common
     return <button className={s.button}
                    disabled={props.followingInProgress.some(id => id === props.userId)}
                    onClick={() => props.unfollowingUser(props.userId)}>❌ Unfollow
@@ -71,6 +73,7 @@ const UserLabel = (props) => {
 };
 
 const PageSlider = (props) => {
+    //TODO вынести в common
     let portionSize = 7
     let portionCount = Math.ceil(props.pages.length / portionSize)
     let [portionNumber, setPortionNumber] = useState(1);
