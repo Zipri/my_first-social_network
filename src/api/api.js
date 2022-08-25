@@ -12,10 +12,10 @@ export const usersApi = {
 		return instance.get(`users?page=${currentPage}&count=${pageSize}`)
 			.then(response => response.data)
 	},
-	getFriends (currentPage, pageSize) {
-		return instance.get(`users?friend=${true}&page=${currentPage}&count=${pageSize}`)
-			//TODO если больше 100 френдов - не все отобразятся
+	getFriends () {
+		return instance.get(`users?friend=${true}&count=100`)
 			.then(response => response.data)
+		//TODO сделать кнопку "ещё 100" и показывать тогда, когда data.totalCount < 100
 	},
 	unfollowUser (userId) {
 		return instance.delete(`follow/${userId}`)

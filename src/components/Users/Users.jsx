@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {NavLink} from "react-router-dom";
 
 import FollowControl from "../common/FollowControl/FollowControl";
@@ -110,9 +110,6 @@ const UsersList = (props) => {
 const FriendsList = (props) => {
     return <div className={s.friends}>
         <div className={s.label}>{props.isAuth ? "Friends:" : "Please Login to see your friends"}</div>
-        <PageSlider pages={props.friendPages}
-                    onPageChanged={props.onFriendPageChanged}
-                    currentPage={props.currentFriendPage}/>
         {props.friends.map(friends => {
             return <div key={friends.id} className={s.flex}>
                 <UserLabel u={friends}/>
@@ -136,9 +133,6 @@ const Users = (props) => {
                    unfollowingUser={props.unfollowingUser}/>
         <FriendsList isAuth={props.isAuth}
                      friends={props.friends}
-                     friendPages={props.friendPages}
-                     onFriendPageChanged={props.onFriendPageChanged}
-                     currentFriendPage={props.currentFriendPage}
                      followingInProgress={props.followingInProgress}
                      followingUser={props.followingUser}
                      unfollowingUser={props.unfollowingUser}/>

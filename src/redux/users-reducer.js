@@ -9,7 +9,6 @@ const UNFOLLOW = 'users/UNFOLLOW';
 
 const SET_CURRENT_PAGE = 'users/SET-CURRENT-PAGE';
 const SET_TOTAL_COUNT_USERS = 'users/SET-TOTAL-COUNT-USERS';
-const SET_CURRENT_FRIEND_PAGE = 'users/SET-CURRENT-FRIEND-PAGE';
 const SET_TOTAL_COUNT_FRIENDS = 'users/SET-TOTAL-COUNT-FRIENDS';
 
 const TOGGLE_IS_FETCHING = 'users/TOGGLE-IS-FETCHING';
@@ -23,7 +22,6 @@ let initialState = {
     totalUsersCount: 0,
     currentPage: 1,
     totalFriendsCount: 0,
-    currentFriendPage: 1,
 
     isFetching: false,
     followingInProgress: []
@@ -45,7 +43,10 @@ const usersReducer = (state = initialState, action) => {
 					state.users,
 					action.userId,
 					"id",
-					{followed: true})
+					{followed: true}),
+                // v чтобы в массив добавить друга в начало - "...state.friends" делаем после
+                friends: [state.users.filter(user => user.id === action.userId)[0], ...state.friends]
+                // ^ после фильтрации возвращается массив с одним объектом, поэтому ...[0]
             }
 
         case UNFOLLOW:
@@ -55,7 +56,9 @@ const usersReducer = (state = initialState, action) => {
 					state.users,
 					action.userId,
 					"id",
-					{followed: false})
+					{followed: false}),
+                friends: state.friends.filter(friend => friend.id !== action.userId)
+                //TODO если есть 200 друзей и удалять друга №200 через список юзеров - херня, т.к. отображается только 100
             }
 
         case SET_CURRENT_PAGE:
@@ -63,9 +66,6 @@ const usersReducer = (state = initialState, action) => {
 
         case SET_TOTAL_COUNT_USERS:
             return {...state, totalUsersCount: action.totalUsersCount}
-
-        case SET_CURRENT_FRIEND_PAGE:
-            return {...state, currentFriendPage: action.currentFriendPage}
 
         case SET_TOTAL_COUNT_FRIENDS:
             return {...state, totalFriendsCount: action.totalFriendsCount}
@@ -97,7 +97,6 @@ export const unfollowUser = (userId) => ({type: UNFOLLOW, userId});
 export const setCurrentPage = (currentPage) => ({type: SET_CURRENT_PAGE, currentPage});
 export const setTotalUsersCount = (totalUsersCount) => ({type: SET_TOTAL_COUNT_USERS, totalUsersCount});
 
-export const setCurrentFriendPage = (currentFriendPage) => ({type: SET_CURRENT_FRIEND_PAGE, currentFriendPage});
 export const setTotalFriendsCount = (totalFriendsCount) => ({type: SET_TOTAL_COUNT_FRIENDS, totalFriendsCount});
 
 export const toggleIsFetching = (isFetching) => ({type: TOGGLE_IS_FETCHING, isFetching});
@@ -117,13 +116,13 @@ export const getUsersThunkCreator = (page, pageSize) => {
         dispatch(setTotalUsersCount(data.totalCount))
     }
 };
-export const getFriendsThunkCreator = (page, pageSize) => {
+export const getFriendsThunkCreator = () => {
     return async (dispatch) => {
         dispatch(toggleIsFetching(true))
-        dispatch(setCurrentFriendPage(page))
-        let data = await usersApi.getFriends(page, pageSize)
+        let data = await usersApi.getFriends()
         dispatch(toggleIsFetching(false))
         dispatch(setFriends(data.items))
+        //TODO потом добавить отображение общего кол-ва друзей
         dispatch(setTotalFriendsCount(data.totalCount))
     }
 };

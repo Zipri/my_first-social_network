@@ -40,10 +40,6 @@ class UsersContainer extends React.Component {
         let pages = []
         for (let i = 1; i <= pagesCount; i++) pages.push(i)
 
-        let pagesFriendsCount = Math.ceil(this.props.totalFriendsCount / this.props.pageSize)
-        let friendPages = []
-        for (let i = 1; i <= pagesFriendsCount; i++) friendPages.push(i)
-
         return <>
             {this.props.isFetching
                 //TODO добавить везде эту хуету с прелодарем
@@ -53,10 +49,6 @@ class UsersContainer extends React.Component {
                          pages={pages}
                          onPageChanged={this.onPageChanged}
                          currentPage={this.props.currentPage}
-
-                         friendPages={friendPages}
-                         onFriendPageChanged={this.onFriendPageChanged}
-                         currentFriendPage={this.props.currentFriendPage}
 
                          users={this.props.users}
                          friends={this.props.friends}
@@ -79,7 +71,6 @@ let mapStateToProps = (state) => {
         totalUsersCount: getTotalUsersCount(state),
         currentPage: getCurrentPage(state),
         totalFriendsCount: getTotalFriendsCount(state),
-        currentFriendPage: getCurrentFriendPage(state),
 
         isFetching: getIsFetching(state),
         followingInProgress: getFollowingInProgress(state),

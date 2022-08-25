@@ -23,7 +23,6 @@ export const getFriends = (state) => state.usersPage.friends;
 export const getTotalUsersCount = (state) => state.usersPage.totalUsersCount;
 export const getCurrentPage = (state) => state.usersPage.currentPage;
 export const getTotalFriendsCount = (state) => state.usersPage.totalFriendsCount;
-export const getCurrentFriendPage = (state) => state.usersPage.currentFriendPage;
 export const getIsFetching = (state) => state.usersPage.isFetching;
 export const getFollowingInProgress = (state) => state.usersPage.followingInProgress;
 
