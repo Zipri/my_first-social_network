@@ -1,4 +1,5 @@
 import {profileApi, UnFollowUser} from "../api/api";
+import {stopSubmit} from "redux-form";
 
 const ADD_POST = 'profile/ADD-POST';
 const DELETE_POST = 'profile/DELETE-POST';
@@ -83,6 +84,16 @@ export const getUserProfileThunkCreator = (userId) => async (dispatch) => {
 export const savePhoto = (file) => async (dispatch) => {
     let response = await profileApi.savePhoto(file)
     if (response.data.resultCode === 0) dispatch(savePhotoSuccess(response.data.data.photos))
+};
+export const saveProfile = (profile) => async (dispatch, getState) => {
+    const userId = getState().auth.userId
+    const response = await profileApi.saveProfile(profile)
+    if (response.data.resultCode === 0) {
+        dispatch(getUserProfileThunkCreator(userId))
+    } else {
+        dispatch(stopSubmit("profileInfoEditForm", {_error: response.data.messages[0]}))
+        return Promise.reject(response.data.messages[0])
+    }
 };
 export const getProfileStatusThunkCreator = (userId) => async (dispatch) => {
     let data = await profileApi.getProfileStatus(userId)

@@ -6,7 +6,7 @@ import {compose} from "redux";
 import ProfileInfo from "./ProfileInfo";
 import {
     getProfileStatusThunkCreator,
-    getUserProfileThunkCreator, isFollowedThunkCreator, savePhoto,
+    getUserProfileThunkCreator, isFollowedThunkCreator, savePhoto, saveProfile,
     updateProfileStatusThunkCreator
 } from "../../../redux/profile-reducer";
 import {followUserThunkCreator, unfollowUserThunkCreator} from "../../../redux/users-reducer";
@@ -51,6 +51,7 @@ class ProfileContainer extends React.Component {
         return <ProfileInfo profile={this.props.profile}
                             isOwner={!this.props.match.params.userId}
                             savePhoto={this.props.savePhoto}
+                            saveProfile={this.props.saveProfile}
                             status={this.props.status}
                             updateStatus={this.props.updateProfileStatusThunkCreator}
                             followingUser={this.followingUser}
@@ -75,7 +76,8 @@ export default compose(
         {
             getUserProfileThunkCreator,
             getProfileStatusThunkCreator, updateProfileStatusThunkCreator,
-            followUserThunkCreator, unfollowUserThunkCreator, isFollowedThunkCreator, savePhoto
+            followUserThunkCreator, unfollowUserThunkCreator, isFollowedThunkCreator,
+            savePhoto, saveProfile
         }),
     withRouter)
 (ProfileContainer)
