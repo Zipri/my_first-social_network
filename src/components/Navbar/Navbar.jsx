@@ -36,6 +36,12 @@ const Navbar = () => {
 					Settings
 				</NavLink>
 			</div>
+
+			<div className={s.item}>
+				<NavLink to="/settings" activeClassName={s.active}>
+					FAQ
+				</NavLink>
+			</div>
 		{/*TODO добавить менюшку AntD и в разъезжание вкладки - френдлист небольшой и ещё что-нибудь*/}
 		</nav>
 	)

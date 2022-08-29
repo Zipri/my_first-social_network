@@ -30,3 +30,4 @@ export const getFollowingInProgress = (state) => state.usersPage.followingInProg
 export const getIsAuth = (state) => state.auth.isAuth;
 export const getAuthUserId = (state) => state.auth.userId;
 export const getLogin = (state) => state.auth.login;
+export const getCaptchaURL = (state) => state.auth.captchaURL;
