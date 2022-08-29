@@ -45,8 +45,14 @@ const usersReducer = (state = initialState, action) => {
 					"id",
 					{followed: true}),
                 // v чтобы в массив добавить друга в начало - "...state.friends" делаем после
-                friends: [state.users.filter(user => user.id === action.userId)[0], ...state.friends]
+                friends: [state.users.filter(user => {
+                    if (user.id === action.userId) {
+                        user.followed = true
+                        return user
+                    }
+                })[0], ...state.friends]
                 // ^ после фильтрации возвращается массив с одним объектом, поэтому ...[0]
+                // меняем поле подписки
             }
 
         case UNFOLLOW:
