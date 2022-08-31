@@ -1,5 +1,5 @@
-import React, {Suspense} from 'react';
-import {Route, withRouter} from "react-router-dom";
+import React, {Suspense, useEffect} from 'react';
+import {Redirect, Route, Switch, withRouter} from "react-router-dom";
 import {connect} from "react-redux";
 import {compose} from "redux";
 
@@ -20,37 +20,37 @@ const Settings = React.lazy(() => import('./components/Settings/Settings'));
 const Login = React.lazy(() => import('./components/Login/Login'));
 
 
-class App extends React.Component {
-    componentDidMount() {
-        this.props.initializeAppThunkCreator()
-    }
-
-    render() {
-        if (!this.props.initialized) return <Preloader/>
-        return (
-            <div className='app-wrapper'>
-                <HeaderContainer/>
-                <Navbar/>
-                <Suspense fallback={<div>Загрузка...</div>}>
-                    <div className='content-wrapper'>
-                        <Route path='/profile/:userId?'
-                               render={() => <Profile/>}/>
-                        <Route path='/dialogs'
-                               render={() => <Dialogs/>}/>
-                        <Route path='/news'
-                               render={() => <News/>}/>
-                        <Route path='/users'
-                               render={() => <UsersContainer/>}/>
-                        <Route path='/settings'
-                               render={() => <Settings/>}/>
-                        <Route path='/login'
-                               render={() => <Login/>}/>
-                    </div>
-                </Suspense>
+const App = (props) => {
+    useEffect(() => props.initializeAppThunkCreator(), [])
+    //^ =componentDidMount
+    if (!props.initialized) return <Preloader/>
+    return <div className='app-wrapper'>
+        <HeaderContainer/>
+        <Navbar/>
+        <Suspense fallback={<div>Загрузка...</div>}>
+            <div className='content-wrapper'>
+                <Switch>
+                    <Route exact path='/'
+                           render={() => <Redirect to="/profile" />}/>
+                    <Route path='/profile/:userId?'
+                           render={() => <Profile/>}/>
+                    <Route path='/dialogs'
+                           render={() => <Dialogs/>}/>
+                    <Route path='/news'
+                           render={() => <News/>}/>
+                    <Route path='/users'
+                           render={() => <UsersContainer/>}/>
+                    <Route path='/settings'
+                           render={() => <Settings/>}/>
+                    <Route path='/login'
+                           render={() => <Login/>}/>
+                    <Route path='*'
+                           render={() => <h1>404 Page not found</h1>}/>
+                </Switch>
             </div>
-        )
-            ;
-    }
+        </Suspense>
+    </div>
+
 }
 
 const mapStateToProps = (state) => ({

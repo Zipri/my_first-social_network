@@ -26,7 +26,7 @@ const Buttons = (props) => <div className={s.buttons}>
 const ProfileInfo = (props) => {
     const [followed, setFollowed] = useState(props.followed)
     useEffect(() => setFollowed(props.followed), [props.followed])
-    // использовал локальный стейт для динамического отображения изменений на странице
+    // ^ использовал локальный стейт для динамического отображения изменений на странице
     // т.к. props.followingUser - изменяет его только для users-reducers
     const followingUser = (userId) => {
         props.followingUser(userId)
@@ -37,10 +37,7 @@ const ProfileInfo = (props) => {
         setFollowed(false)
     }
 
-    if (!props.profile) {
-        return <Preloader/>
-    }
-
+    if (!props.profile) return <Preloader/>
     return <div className={s.profileInfo}>
         <UserPart profile={props.profile}
                   isOwner={props.isOwner}

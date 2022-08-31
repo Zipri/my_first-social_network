@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {connect} from "react-redux";
 
 import Users from "./Users";
@@ -19,45 +19,42 @@ import {
 } from "../../redux/getters-selectors";
 
 
-class UsersContainer extends React.Component {
-    componentDidMount() {
-        this.props.getUsersThunkCreator(this.props.currentPage, this.props.pageSize)
-        this.props.getFriendsThunkCreator(this.props.currentFriendPage, this.props.pageSize)
-    }
+const UsersContainer = (props) => {
+    useEffect(() => {
+        props.getUsersThunkCreator(props.currentPage, props.pageSize)
+        props.getFriendsThunkCreator(props.currentFriendPage, props.pageSize)
+    }, [])
 
-    onPageChanged = (pageNumber) =>
-        this.props.getUsersThunkCreator(pageNumber, this.props.pageSize)
-    onFriendPageChanged = (pageNumber) =>
-        this.props.getFriendsThunkCreator(pageNumber, this.props.pageSize)
+    const onPageChanged = (pageNumber) =>
+        props.getUsersThunkCreator(pageNumber, props.pageSize)
 
-    followingUser = (userId) =>
-        this.props.followUserThunkCreator(userId)
-    unfollowingUser = (userId) =>
-        this.props.unfollowUserThunkCreator(userId)
+    const followingUser = (userId) =>
+        props.followUserThunkCreator(userId)
+    const unfollowingUser = (userId) =>
+        props.unfollowUserThunkCreator(userId)
 
-    render() {
-        let pagesCount = Math.ceil(this.props.totalUsersCount / this.props.pageSize)
-        let pages = []
-        for (let i = 1; i <= pagesCount; i++) pages.push(i)
+    let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize)
+    let pages = []
+    for (let i = 1; i <= pagesCount; i++) pages.push(i)
 
-        return <>
-            {this.props.isFetching
-                //TODO добавить везде эту хуету с прелодарем
-                ? <Preloader/>
-                : <Users isAuth={this.props.isAuth}
+    return <>
+        {props.isFetching
+            //TODO добавить везде эту хуету с прелодарем
+            ? <Preloader/>
+            : <Users isAuth={props.isAuth}
 
-                         pages={pages}
-                         onPageChanged={this.onPageChanged}
-                         currentPage={this.props.currentPage}
+                     pages={pages}
+                     onPageChanged={onPageChanged}
+                     currentPage={props.currentPage}
 
-                         users={this.props.users}
-                         friends={this.props.friends}
+                     users={props.users}
+                     friends={props.friends}
 
-                         followingUser={this.followingUser}
-                         unfollowingUser={this.unfollowingUser}
-                         followingInProgress={this.props.followingInProgress}/>}
-        </>
-    }
+                     followingUser={followingUser}
+                     unfollowingUser={unfollowingUser}
+                     followingInProgress={props.followingInProgress}/>}
+    </>
+
 };
 
 

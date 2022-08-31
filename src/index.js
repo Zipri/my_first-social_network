@@ -11,7 +11,7 @@ import './index.css';
 
 
 ReactDOM.render(<React.StrictMode>
-	<HashRouter>
+	<HashRouter> {/*deploy on gh-pages*/}
 
 		<Provider store={store}>
 			<App/>

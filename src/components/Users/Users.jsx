@@ -73,10 +73,9 @@ const PageSlider = (props) => {
         {
             props.pages.filter(p => p >= left && p <= right)
                 .map(p => <span>
-					<button
-                        onClick={() => props.onPageChanged(p)}
-                        className={props.currentPage === p && s.selected || s.pageButton}>
-							{p}
+					<button onClick={() => props.onPageChanged(p)}
+                            className={props.currentPage === p && s.selected || s.pageButton}>
+                        {p}
 					</button>
 				</span>)
         }
