@@ -21,8 +21,18 @@ const Login = React.lazy(() => import('./components/Login/Login'));
 
 
 const App = (props) => {
-    useEffect(() => props.initializeAppThunkCreator(), [])
+    useEffect(() => {
+        props.initializeAppThunkCreator()
+        window.addEventListener("unhandledrejection", catchAllUnhandledErrors)
+        return () => window.removeEventListener("unhandledrejection", catchAllUnhandledErrors)
+        //^ =componentWillUnmount
+    }, [])
     //^ =componentDidMount
+    const catchAllUnhandledErrors = (promiseRejectionEvent) => {
+        // alert("Ooops, here is some error: " + promiseRejectionEvent.reason.message)
+        console.log(promiseRejectionEvent)
+    } //TODO сделать отдельную компоненту для ошибко (с крестиков всплывашка и таймаутом), текст ошибки можно хранить в голбал стейт
+    //TODO добавить кнопку имитацю ошибки
     if (!props.initialized) return <Preloader/>
     return <div className='app-wrapper'>
         <HeaderContainer/>

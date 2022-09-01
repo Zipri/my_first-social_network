@@ -1,9 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import {NavLink} from "react-router-dom";
-
 import FollowControl from "../common/FollowControl/FollowControl";
-
 import s from './Users.module.css';
+import cn from "classnames";
 
 const Button = (props) => {
     return <div>
@@ -74,7 +73,8 @@ const PageSlider = (props) => {
             props.pages.filter(p => p >= left && p <= right)
                 .map(p => <span>
 					<button onClick={() => props.onPageChanged(p)}
-                            className={props.currentPage === p && s.selected || s.pageButton}>
+                            className={// props.currentPage === p && s.selected || s.pageButton
+                                        cn(s.pageButton, {[s.selected]: props.currentPage === p})}>
                         {p}
 					</button>
 				</span>)

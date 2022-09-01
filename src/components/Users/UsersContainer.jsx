@@ -9,7 +9,6 @@ import {
     unfollowUser, unfollowUserThunkCreator
 } from "../../redux/users-reducer";
 import {
-    getCurrentFriendPage,
     getCurrentPage, getFollowingInProgress,
     getFriends,
     getIsAuth, getIsFetching,
@@ -28,10 +27,8 @@ const UsersContainer = (props) => {
     const onPageChanged = (pageNumber) =>
         props.getUsersThunkCreator(pageNumber, props.pageSize)
 
-    const followingUser = (userId) =>
-        props.followUserThunkCreator(userId)
-    const unfollowingUser = (userId) =>
-        props.unfollowUserThunkCreator(userId)
+    const followingUser = (userId) => props.followUserThunkCreator(userId)
+    const unfollowingUser = (userId) => props.unfollowUserThunkCreator(userId)
 
     let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize)
     let pages = []

@@ -100,8 +100,12 @@ export const getProfileStatusThunkCreator = (userId) => async (dispatch) => {
     dispatch(setProfileStatus(data))
 };
 export const updateProfileStatusThunkCreator = (status) => async (dispatch) => {
-    let response = await profileApi.updateProfileStatus(status)
-    if (response.data.resultCode === 0) dispatch(setProfileStatus(status))
+    try {
+        let response = await profileApi.updateProfileStatus(status)
+        if (response.data.resultCode === 0) dispatch(setProfileStatus(status))
+    } catch (error) {
+        //TODO чё-нить сделать
+    }
 };
 export const isFollowedThunkCreator = (userId) => async (dispatch) => {
     let data = await UnFollowUser.getIsFollowed(userId)
