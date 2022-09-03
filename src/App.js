@@ -9,9 +9,10 @@ import Profile from "./components/Profile/Profile";
 
 import Preloader from "./components/common/Preloader/Preloader";
 import {initializeAppThunkCreator} from "./redux/app-reducer";
-import {getInitialized} from "./redux/getters-selectors";
+import {getGlobalError, getInitialized} from "./redux/getters-selectors";
 
 import './App.css';
+import ErrorForm from "./components/common/ErrorForm/ErrorForm";
 
 const UsersContainer = React.lazy(() => import('./components/Users/UsersContainer'));
 const Dialogs = React.lazy(() => import('./components/Dialogs/Dialogs'));
@@ -21,18 +22,7 @@ const Login = React.lazy(() => import('./components/Login/Login'));
 
 
 const App = (props) => {
-    useEffect(() => {
-        props.initializeAppThunkCreator()
-        window.addEventListener("unhandledrejection", catchAllUnhandledErrors)
-        return () => window.removeEventListener("unhandledrejection", catchAllUnhandledErrors)
-        //^ =componentWillUnmount
-    }, [])
-    //^ =componentDidMount
-    const catchAllUnhandledErrors = (promiseRejectionEvent) => {
-        // alert("Ooops, here is some error: " + promiseRejectionEvent.reason.message)
-        console.log(promiseRejectionEvent)
-    } //TODO сделать отдельную компоненту для ошибко (с крестиков всплывашка и таймаутом), текст ошибки можно хранить в голбал стейт
-    //TODO добавить кнопку имитацю ошибки
+    useEffect(() => {props.initializeAppThunkCreator()}, [])
     if (!props.initialized) return <Preloader/>
     return <div className='app-wrapper'>
         <HeaderContainer/>
@@ -57,6 +47,7 @@ const App = (props) => {
                     <Route path='*'
                            render={() => <h1>404 Page not found</h1>}/>
                 </Switch>
+                {!!props.globalError && <ErrorForm error={props.globalError}/>}
             </div>
         </Suspense>
     </div>
@@ -64,7 +55,9 @@ const App = (props) => {
 }
 
 const mapStateToProps = (state) => ({
-    initialized: getInitialized(state)
+    initialized: getInitialized(state),
+    globalError: getGlobalError(state)
+
 })
 
 export default compose(

@@ -2,6 +2,7 @@ import {createSelector} from "reselect";
 
 //App
 export const getInitialized = (state) => state.app.initialized
+export const getGlobalError = (state) => state.app.globalError
 
 //Profile
 export const getProfile = (state) => state.profilePage.profile;

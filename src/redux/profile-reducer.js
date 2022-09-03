@@ -1,5 +1,6 @@
 import {profileApi, UnFollowUser} from "../api/api";
 import {stopSubmit} from "redux-form";
+import {setGlobalError} from "./app-reducer";
 
 const ADD_POST = 'profile/ADD-POST';
 const DELETE_POST = 'profile/DELETE-POST';
@@ -104,7 +105,7 @@ export const updateProfileStatusThunkCreator = (status) => async (dispatch) => {
         let response = await profileApi.updateProfileStatus(status)
         if (response.data.resultCode === 0) dispatch(setProfileStatus(status))
     } catch (error) {
-        //TODO чё-нить сделать
+        dispatch(setGlobalError(error))
     }
 };
 export const isFollowedThunkCreator = (userId) => async (dispatch) => {
