@@ -1,0 +1,22 @@
+.errorWindow {
+    position: absolute;
+    width: 215px;
+    height: min-content;
+    left: 17px;
+    top: 600px;
+
+    background: #FF6767;
+    border-radius: 10px;
+
+    padding: 10px;
+}
+
+.errorMessage {
+    margin-top: 20px;
+    word-wrap: break-word;
+    font-size: 30px;
+}
+
+.exitButton {
+    float: right;
+}

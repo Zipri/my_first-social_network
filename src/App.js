@@ -8,7 +8,7 @@ import Navbar from "./components/Navbar/Navbar";
 import Profile from "./components/Profile/Profile";
 
 import Preloader from "./components/common/Preloader/Preloader";
-import {initializeAppThunkCreator} from "./redux/app-reducer";
+import {initializeAppThunkCreator, resetGlobalError} from "./redux/app-reducer";
 import {getGlobalError, getInitialized} from "./redux/getters-selectors";
 
 import './App.css';
@@ -22,7 +22,9 @@ const Login = React.lazy(() => import('./components/Login/Login'));
 
 
 const App = (props) => {
-    useEffect(() => {props.initializeAppThunkCreator()}, [])
+    useEffect(() => {
+        props.initializeAppThunkCreator()
+    }, [])
     if (!props.initialized) return <Preloader/>
     return <div className='app-wrapper'>
         <HeaderContainer/>
@@ -31,7 +33,7 @@ const App = (props) => {
             <div className='content-wrapper'>
                 <Switch>
                     <Route exact path='/'
-                           render={() => <Redirect to="/profile" />}/>
+                           render={() => <Redirect to="/profile"/>}/>
                     <Route path='/profile/:userId?'
                            render={() => <Profile/>}/>
                     <Route path='/dialogs'
@@ -47,7 +49,8 @@ const App = (props) => {
                     <Route path='*'
                            render={() => <h1>404 Page not found</h1>}/>
                 </Switch>
-                {!!props.globalError && <ErrorForm error={props.globalError}/>}
+                {!!props.globalError && <ErrorForm error={props.globalError}
+                                                   resetError={props.resetGlobalError}/>}
             </div>
         </Suspense>
     </div>
@@ -62,5 +65,5 @@ const mapStateToProps = (state) => ({
 
 export default compose(
     withRouter,
-    connect(mapStateToProps, {initializeAppThunkCreator})
+    connect(mapStateToProps, {initializeAppThunkCreator, resetGlobalError})
 )(App);
