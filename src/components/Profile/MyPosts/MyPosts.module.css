@@ -1,38 +1,39 @@
 .myPosts {
     grid-area: myPosts;
 
-    padding: 10px;
+    padding: 20px;
 }
 .addPost {
     padding-bottom: 10px;
     display: flex;
 }
 .addPost textarea {
-    background-color: #f6f1e2;
+    background-color: #e4f5fe;
     height: 40px;
-    width: 500px;
-    resize: none;
+    width: 450px;
     border-radius: 10px;
+    padding: 5px;
     outline: none;
-    font-size: 20px;
+    font-size: 15px;
 }
 .addPost button {
     margin-left: 5px;
-    height: 45px;
+    height: 40px;
     width: 45px;
     border: none;
-    background-color: #deb48c;
-    border-radius: 50%;
-    font-size: 30px;
-    font-family: Serif;
+    background-color: #18abfe;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: bold;
+    color: #ffffff;
 }
 /*<Post />*/
 .post {
-    width: 555px;
+    width: 500px;
     margin-bottom: 10px;
     display: flex;
     border-radius: 10px;
-    background-color: #deb48c;
+    background-color: #e2f3fd;
 }
 .post img {
     width: 50px;

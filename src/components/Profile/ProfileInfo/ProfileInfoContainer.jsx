@@ -20,12 +20,11 @@ import {
 } from "../../../redux/getters-selectors";
 
 
-const ProfileContainer = (props) => {
+const ProfileInfoContainer = (props) => {
     const params = useParams(); // props.match.params. in hook (withRouter)
 
     useEffect(() => {
         refreshProfile()
-        console.log("componentDidUpdate")
     }, [params.userId])
 
     const refreshProfile = () => {
@@ -74,4 +73,4 @@ export default compose(
             savePhoto, saveProfile
         }),
     withRouter)
-(ProfileContainer)
+(ProfileInfoContainer)

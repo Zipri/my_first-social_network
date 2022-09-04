@@ -1,31 +1,29 @@
 .header {
     grid-area: h;
-    background-color: #b2d1fb;
+    background-color: #e4f5fe;
+    display: flex;
 }
 .header img {
     height: 60px;
 }
 
-.loginBlock {
-    margin-top: 10px;
-    margin-right: 20px;
-    float: right;
-    font-family: "Book Antiqua";
+.authBlock {
     font-size: 30px;
+    margin-left: auto;
 }
-.loginBlock a {
-    text-decoration: none;
-    color: antiquewhite;
+
+.inputAPI {
+    margin-left: 20px;
+    margin-top: 6px;
 }
-.loginBlock a:hover {
-    text-decoration: none;
-    color: #004dbf;
+
+.logoutBlock {
+    display: flex;
+    height: 60px;
 }
 .logoutB {
-    float: right;
+    margin-left: 20px;
 }
-.logoutB img {
-    margin-top: 5px;
-    margin-right: 10px;
-    height: 50px;
+.logoutText {
+    padding-top: 5px;
 }

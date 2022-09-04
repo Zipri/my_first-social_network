@@ -6,13 +6,13 @@ import {compose} from "redux";
 import HeaderContainer from "./components/Header/HeaderContainer";
 import Navbar from "./components/Navbar/Navbar";
 import Profile from "./components/Profile/Profile";
-
 import Preloader from "./components/common/Preloader/Preloader";
+import ErrorForm from "./components/common/ErrorForm/ErrorForm";
+
 import {initializeAppThunkCreator, resetGlobalError} from "./redux/app-reducer";
 import {getGlobalError, getInitialized} from "./redux/getters-selectors";
 
 import './App.css';
-import ErrorForm from "./components/common/ErrorForm/ErrorForm";
 
 const UsersContainer = React.lazy(() => import('./components/Users/UsersContainer'));
 const Dialogs = React.lazy(() => import('./components/Dialogs/Dialogs'));

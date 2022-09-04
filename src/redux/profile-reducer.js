@@ -1,6 +1,7 @@
 import {profileApi, UnFollowUser} from "../api/api";
 import {stopSubmit} from "redux-form";
 import {setGlobalError} from "./app-reducer";
+import noAvatar from '../assets/noAvatar.png'
 
 const ADD_POST = 'profile/ADD-POST';
 const DELETE_POST = 'profile/DELETE-POST';
@@ -80,6 +81,10 @@ export const isFollowed = (followed) => ({type: IS_FOLLOWED, followed})
 
 export const getUserProfileThunkCreator = (userId) => async (dispatch) => {
     let data = await profileApi.getUserProfile(userId)
+    if (!data.photos.small) {
+        data.photos.small = noAvatar
+        data.photos.large = noAvatar
+    }
     dispatch(setProfile(data))
 };
 export const savePhoto = (file) => async (dispatch) => {

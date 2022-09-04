@@ -8,6 +8,7 @@ import App from "./App";
 import store from "./redux/redux-store";
 
 import './index.css';
+import 'antd/dist/antd.css';
 
 
 ReactDOM.render(<React.StrictMode>

@@ -1,50 +1,26 @@
 import React from 'react'
 import {NavLink} from "react-router-dom";
+import {Menu} from 'antd';
 import s from './Navbar.module.css'
 
+const pagesLinks = [
+    {label: 'Profile', key: '/profile'},
+    {label: 'Messages', key: '/dialogs'},
+    {label: 'News', key: '/news'},
+    {label: 'Users', key: '/users'},
+    {label: 'Settings', key: '/settings'},
+    {label: 'FAQ', key: '/settings'},
+];
+
 const Navbar = () => {
-	return (
-		<nav className={s.nav}>
+    const menuItem = (key, link, label) =>
+        <Menu.Item key={key}>
+            <NavLink to={link}>{label}</NavLink>
+        </Menu.Item>
 
-			{/*TODO добавить в navbar над владками меню пользователя - картинка и описание, ФИО*/}
-			<div className={s.item}>
-				<NavLink to="/profile" activeClassName={s.active}>
-					Profile
-				</NavLink>
-			</div>
-
-			<div className={s.item}>
-				<NavLink to="/dialogs" activeClassName={s.active}>
-					Messages
-				</NavLink>
-			</div>
-
-			<div className={s.item}>
-				<NavLink to="/news" activeClassName={s.active}>
-					News
-				</NavLink>
-			</div>
-
-			<div className={s.item}>
-				<NavLink to="/users" activeClassName={s.active}>
-					Users
-				</NavLink>
-			</div>
-
-			<div className={s.item}>
-				<NavLink to="/settings" activeClassName={s.active}>
-					Settings
-				</NavLink>
-			</div>
-
-			<div className={s.item}>
-				<NavLink to="/settings" activeClassName={s.active}>
-					FAQ
-				</NavLink>
-			</div>
-		{/*TODO добавить менюшку AntD и в разъезжание вкладки - френдлист небольшой и ещё что-нибудь*/}
-		</nav>
-	)
-}
+    return <Menu style={{width: 250}} selectedKeys={[window.location.href.split('#')[1]]}>
+        {pagesLinks.map(item => menuItem(item.key, item.key, item.label))}
+    </Menu>
+};
 
 export default Navbar;
