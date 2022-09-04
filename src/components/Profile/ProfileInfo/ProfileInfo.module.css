@@ -11,16 +11,15 @@
 .status {
     height: min-content;
     margin: 10px;
-    padding: 10px;
+    padding: 3px;
     border-radius: 10px;
-    background-color: #deb48c;
+    background-color: #18aafd;
 }
 
 .active {
     height: min-content;
     width: 90%;
     padding: 20px;
-    font-family: Calibri;
     font-size: 18px;
 }
 
@@ -28,35 +27,14 @@
     height: min-content;
     padding: 5px 5px 5px 20px;
     border-radius: 6px;
-    background-color: antiquewhite;
-    font-family: Calibri;
+    background-color: #e0f1fc;
     font-style: italic;
     font-size: 18px;
 }
 
 /*<Buttons />*/
 .buttons {
-    display: flex;
     padding: 10px;
-}
-
-.button {
-    width: 75px;
-    height: 49px;
-    margin-right: 15px;
-    border: 0px;
-    border-radius: 10px;
-    background-color: #deb48c;
-    font-family: Arial;
-}
-
-.pbutton {
-    width: 75px;
-    height: 49px;
-    border: 0px;
-    border-radius: 10px;
-    background-color: #deb48c;
-    font-family: Arial;
 }
 
 /*<LinksArea />*/
@@ -83,6 +61,7 @@
     margin: 10px;
     border-radius: 20px;
     background-color: #e0f1fc;
+    padding-bottom: 10px;
 }
 
 .imageBody {
@@ -134,4 +113,8 @@
     font-style: italic;
     font-size: 15px;
     color: #18aafd;
+}
+/*EditMode*/
+.editMode {
+    margin: 15px;
 }

@@ -1,25 +1,7 @@
 import React, {useEffect, useState} from "react";
 import UserStatus from "./ProfileStatus";
 import s from "./ProfileInfo.module.css";
-import {NavLink} from "react-router-dom";
-import FollowControl from "../../common/FollowControl/FollowControl";
 import UserPart from "./UserPart";
-
-const Buttons = (props) => <div className={s.buttons}>
-    <div>
-        <FollowControl userId={props.userId}
-                       userFollowed={props.followed}
-                       followingInProgress={props.followingInProgress}
-                       followingUser={props.followingUser}
-                       unfollowingUser={props.unfollowingUser}/>
-    </div>
-    <button className={s.button}>Copy link</button>
-    {/*TODO и как это сделать?*/}
-    <NavLink to={"/users"}>
-        <button className={s.pbutton}>Back to users</button>
-    </NavLink>
-    {/*	TODO переделай этот позор.............. и придумай, как сделать для открытия своего профиля*/}
-</div>
 
 
 const ProfileInfo = (props) => {
@@ -43,12 +25,11 @@ const ProfileInfo = (props) => {
         <UserPart profile={props.profile}
                   isOwner={props.isOwner}
                   saveProfile={props.saveProfile}
-                  savePhoto={props.savePhoto}/>
-        {!props.isOwner && <Buttons followingUser={followingUser}
-                                    unfollowingUser={unfollowingUser}
-                                    followed={followed}
-                                    userId={props.profile.userId}
-                                    followingInProgress={props.followingInProgress}/>}
+                  savePhoto={props.savePhoto}
+                  followingUser={followingUser}
+                  unfollowingUser={unfollowingUser}
+                  followed={followed}
+                  followingInProgress={props.followingInProgress}/>
     </div>
 }
 
