@@ -1,26 +1,21 @@
 .flex {
     display: flex;
 }
+
 /*<ProfileInfo />*/
 .profileInfo {
-    grid-area: profileInfo;
-
-    display: grid;
-    grid-template-areas:
-            'userPart links'
-            'status buttons';
-    grid-template-columns: 2fr 1fr;
     height: min-content;
 }
+
 /*<Status />*/
 .status {
-    grid-area: status;
     height: min-content;
     margin: 10px;
     padding: 10px;
     border-radius: 10px;
     background-color: #deb48c;
 }
+
 .active {
     height: min-content;
     width: 90%;
@@ -28,6 +23,7 @@
     font-family: Calibri;
     font-size: 18px;
 }
+
 .notActive {
     height: min-content;
     padding: 5px 5px 5px 20px;
@@ -37,12 +33,13 @@
     font-style: italic;
     font-size: 18px;
 }
+
 /*<Buttons />*/
 .buttons {
-    grid-area: buttons;
     display: flex;
     padding: 10px;
 }
+
 .button {
     width: 75px;
     height: 49px;
@@ -52,6 +49,7 @@
     background-color: #deb48c;
     font-family: Arial;
 }
+
 .pbutton {
     width: 75px;
     height: 49px;
@@ -60,56 +58,80 @@
     background-color: #deb48c;
     font-family: Arial;
 }
+
 /*<LinksArea />*/
 .links {
-    grid-area: links;
     height: min-content;
     margin: 10px;
-    padding-left: 10px;
-    padding-right: 10px;
+    padding: 5px;
     border-radius: 20px;
-    background-color: #deb48c;
+    border: 1px solid #18aafd;
+    background-color: #ffffff;
 }
+
 .linksArea {
     margin: 10px;
     padding-left: 5px;
     padding-right: 5px;
     border-radius: 5px;
-    background-color: antiquewhite;
+    background-color: #deeffb;
 }
+
 /*<UserPart />*/
 .userPart {
-    grid-area: userPart;
-    display: flex;
     height: min-content;
     margin: 10px;
     border-radius: 20px;
-    background-color: #deb48c;
+    background-color: #e0f1fc;
 }
+
+.imageBody {
+    display: flex;
+}
+.imageButtons {
+    margin: 10px;
+}
+
 .image {
-    height: 280px;
-}
-.image img {
-    width: 280px;
-    height: 280px;
+    width: 200px;
+    height: 200px;
     border-radius: 8%;
 }
-.description {
-    padding-top: 10px;
-    padding-left: 16px;
+.inputFileBody {
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
+.inputFile {
+    position: absolute;
+    opacity: 0;
+    visibility: hidden;
+}
+.inputFileSpan {
+    border: 1px solid #d9d9d9;
+    padding: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    background-color: #ffffff;
+}
+.inputFileSpan:hover {
+    border: 1px solid #18aafd;
+    color: #18aafd;
+}
+
 .descriptionArea {
     margin: 10px;
     padding-top: 5px;
     padding-bottom: 5px;
     padding-left: 20px;
     padding-right: 20px;
+    border: 1px solid #18aafd;
     border-radius: 10px;
-    background-color: antiquewhite;
-}
-.text {
-    font-family: Calibri;
-    font-style: italic;
+    background-color: #ffffff;
     font-size: 18px;
-    color: #5f3e10;
+}
+
+.text {
+    font-style: italic;
+    font-size: 15px;
+    color: #18aafd;
 }

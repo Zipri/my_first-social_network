@@ -5,7 +5,7 @@ import {compose} from "redux";
 
 import HeaderContainer from "./components/Header/HeaderContainer";
 import Navbar from "./components/Navbar/Navbar";
-import Profile from "./components/Profile/Profile";
+import ProfileContainer from "./components/Profile/ProfileContainer";
 import Preloader from "./components/common/Preloader/Preloader";
 import ErrorForm from "./components/common/ErrorForm/ErrorForm";
 
@@ -35,7 +35,7 @@ const App = (props) => {
                     <Route exact path='/'
                            render={() => <Redirect to="/profile"/>}/>
                     <Route path='/profile/:userId?'
-                           render={() => <Profile/>}/>
+                           render={() => <ProfileContainer/>}/>
                     <Route path='/dialogs'
                            render={() => <Dialogs/>}/>
                     <Route path='/news'

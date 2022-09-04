@@ -3,6 +3,7 @@ import React, {useState} from "react";
 import {Field, reduxForm} from "redux-form";
 import {Element} from "../../common/FormsControls/FormsControls";
 import {maxLengthCreator, requiredField} from "../../utils/validators/validators";
+import {Button} from "antd";
 
 const UserPartLabel = (props) => {
     return <div className={s.descriptionArea}>
@@ -69,24 +70,39 @@ const EditFormReduxForm = reduxForm({form: "profileInfoEditForm"})(EditForm)
 
 const UserPart = (props) => {
     let [editMode, setEditMode] = useState(false)
-    const saveInfo = (values) => {
+    const saveInfo = (values) =>
         props.saveProfile(values).then(() => setEditMode(false))
-    }
-    const onMainPhotoSelected = (e) => {
-        props.savePhoto(e.target.files[0])
-    }
+
+    const onMainPhotoSelected = (e) => props.savePhoto(e.target.files[0])
+
 
     return <div className={s.userPart}>
-        <div className={s.image}>
-            {props.isOwner && <input type={"file"} onChange={onMainPhotoSelected}/>}
-            <img className={s.image}
-                 src={props.profile.photos.large || 'https://otvet.imgsmail.ru/download/15f4035d0a54e730e4c24b7a574cb20b_i-33.jpg'}/>
+
+        <div className={s.imageBody}>
+            <img className={s.image} src={props.profile.photos.large} alt={"Profile photo"}/>
+            {props.isOwner && <div className={s.imageButtons}>
+                <div className={s.inputFileBody}>
+                    <label>
+                        <input type={"file"} onChange={onMainPhotoSelected} className={s.inputFile}/>
+                        <span className={s.inputFileSpan}>
+                             Click to upload new avatar
+                        </span>
+                    </label>
+                </div>
+                <Button onClick={() => setEditMode(true)}
+                        style={{
+                            borderRadius: 10,
+                            marginTop: 20,
+                            height: 40,
+                            width: 186
+                        }}>Edit your profile info</Button>
+            </div>}
         </div>
-        <div className={s.description}>
-            {props.isOwner && <button onClick={() => setEditMode(true)}>Edit</button>}
+
+        <div>
             {editMode
                 ? <div>
-                    <button onClick={() => setEditMode(false)}>x</button>
+                    <Button onClick={() => setEditMode(false)}>Close without save</Button>
                     <EditFormReduxForm initialValues={props.profile}
                                        contacts={props.profile.contacts}
                                        onSubmit={saveInfo}/>

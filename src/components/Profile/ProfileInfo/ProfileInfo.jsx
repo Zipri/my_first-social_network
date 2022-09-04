@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from "react";
-import Preloader from "../../common/Preloader/Preloader";
 import UserStatus from "./ProfileStatus";
 import s from "./ProfileInfo.module.css";
 import {NavLink} from "react-router-dom";
@@ -37,15 +36,14 @@ const ProfileInfo = (props) => {
         setFollowed(false)
     }
 
-    if (!props.profile) return <Preloader/>
     return <div className={s.profileInfo}>
+        <UserStatus status={props.status}
+                    isOwner={props.isOwner}
+                    updateStatus={props.updateStatus}/>
         <UserPart profile={props.profile}
                   isOwner={props.isOwner}
                   saveProfile={props.saveProfile}
                   savePhoto={props.savePhoto}/>
-        <UserStatus status={props.status}
-                    isOwner={props.isOwner}
-                    updateStatus={props.updateStatus}/>
         {!props.isOwner && <Buttons followingUser={followingUser}
                                     unfollowingUser={unfollowingUser}
                                     followed={followed}

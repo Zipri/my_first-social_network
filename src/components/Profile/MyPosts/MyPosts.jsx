@@ -3,13 +3,20 @@ import {Field, reduxForm} from "redux-form";
 import {maxLengthCreator, requiredField} from "../../utils/validators/validators";
 import {Element} from "../../common/FormsControls/FormsControls";
 import s from './MyPosts.module.css';
+import {Button} from "antd";
 
 
-const Post = (props) => <div className={s.post}>
-    <img src={props.photo} alt={"avatar"}/>
-    <div className={s.postText}>
-        <div>{props.postMessage}</div>
-        <div className={s.likes}> 👍 {props.likes}</div>
+const Post = (props) => <div className={s.postBody}>
+    <div className={s.post}>
+        <img src={props.photo} alt={"avatar"}/>
+        <div className={s.postText}>
+            <div>{props.postMessage}</div>
+        </div>
+    </div>
+    <div className={s.likesBody}>
+        <Button style={{height: 50, width: 70, borderRadius: 10}}>
+            ♡ {props.likes}
+        </Button>
     </div>
 </div>
 

@@ -4,5 +4,14 @@
     grid-template-areas:
             'myPosts profileInfo';
     grid-template-columns: 1fr 1fr;
+}
 
+.myPosts {
+    display: flex;
+    justify-content: center;
+}
+
+.profileInfo {
+    display: flex;
+    justify-content: center;
 }
