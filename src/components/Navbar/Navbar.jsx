@@ -5,10 +5,7 @@ import s from './Navbar.module.css'
 
 const pagesLinks = [
     {label: 'Profile', key: '/profile'},
-    {label: 'Messages', key: '/dialogs'},
-    {label: 'News', key: '/news'},
     {label: 'Users', key: '/users'},
-    {label: 'Settings', key: '/settings'},
     {label: 'FAQ', key: '/settings'},
 ];
 

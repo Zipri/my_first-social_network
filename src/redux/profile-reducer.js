@@ -15,24 +15,14 @@ let initialState = {
     status: '',
     followed: null,
     posts: [
-        {id: 1, postMessage: 'Hello world', likes: 4},
-        {id: 2, postMessage: '何かのいくつかの種類の性交の説明', likes: 300},
-        {id: 3, postMessage: 'Ебиссь оно конём', likes: 76},
-        {id: 4, postMessage: '.أنا أكره هذه العبارةა', likes: 13},
-        {
-            id: 6,
-            postMessage: 'Она несла в руках отвратительные, тревожные желтые цветы. Черт их знает, как их зовут, но они первые почему-то появляются в Москве.',
-            likes: 666
-        },
+        {id: 1, postMessage: 'Здесь должны были быть реальные посты реальных людей', likes: 4},
+        {id: 2, postMessage: 'И всё время, пока я делал приложение - был уверен, что они будут!', likes: 300},
+        {id: 3, postMessage: 'НО! Почти в самом конце я узнал...', likes: 76},
+        {id: 4, postMessage: 'Нет апишки на посты...', likes: 13},
+        {id: 6, postMessage: 'Нет апишки - нет постов, нет постов - получаем заглушку... Но ладно, выглядит вполне неплохо же? Если бы ещё работало... Но не от меня же это зависит :)', likes: 666},
         {
             id: 7,
-            postMessage: 'Вы помните,\n' +
-                'Вы всё, конечно, помните,\n' +
-                'Как я стоял,\n' +
-                'Приблизившись к стене,\n' +
-                'Взволнованно ходили вы по комнате\n' +
-                'И что-то резкое\n' +
-                'В лицо бросали мне.',
+            postMessage: 'Она несла в руках отвратительные, тревожные желтые цветы. Черт их знает, как их зовут, но они первые почему-то появляются в Москве.',
             likes: 228
         },
     ],
@@ -44,7 +34,7 @@ const profileReducer = (state = initialState, action) => {
         case ADD_POST:
             return {
                 ...state,
-                posts: [...state.posts, {id: 8, postMessage: action.newPostBody, likes: 1337}]
+                posts: [...state.posts, {id: 8, postMessage: action.newPostBody, likes: Math.floor(Math.random()*(1000-1)+1)}]
             }
 
         case DELETE_POST:

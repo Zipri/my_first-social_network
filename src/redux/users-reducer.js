@@ -1,5 +1,6 @@
 import {usersApi} from "../api/api";
 import {updateObjectArray} from "./object-helper";
+import noAvatar from "../assets/noAvatar.png";
 
 const SET_USERS = 'users/SET-USERS';
 const SET_FRIENDS = 'users/SET-FRIENDS';
@@ -18,7 +19,7 @@ let initialState = {
     users: [],
     friends: [],
 
-    pageSize: 8,
+    pageSize: 7,
     totalUsersCount: 0,
     currentPage: 1,
     totalFriendsCount: 0,
@@ -117,6 +118,12 @@ export const getUsersThunkCreator = (page, pageSize) => {
         dispatch(toggleIsFetching(true))
         dispatch(setCurrentPage(page))
         let data = await usersApi.getUsers(page, pageSize)
+        data.items.map(user => {
+            if (!user.photos.small) {
+                user.photos.small = noAvatar
+                user.photos.large = noAvatar
+            }
+        })
         dispatch(toggleIsFetching(false))
         dispatch(setUsers(data.items))
         dispatch(setTotalUsersCount(data.totalCount))
@@ -126,6 +133,12 @@ export const getFriendsThunkCreator = () => {
     return async (dispatch) => {
         dispatch(toggleIsFetching(true))
         let data = await usersApi.getFriends()
+        data.items.map(user => {
+            if (!user.photos.small) {
+                user.photos.small = noAvatar
+                user.photos.large = noAvatar
+            }
+        })
         dispatch(toggleIsFetching(false))
         dispatch(setFriends(data.items))
         //TODO потом добавить отображение общего кол-ва друзей

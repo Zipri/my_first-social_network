@@ -36,7 +36,6 @@ const UsersContainer = (props) => {
 
     return <>
         {props.isFetching
-            //TODO добавить везде эту хуету с прелодарем
             ? <Preloader/>
             : <Users isAuth={props.isAuth}
 
@@ -46,6 +45,7 @@ const UsersContainer = (props) => {
 
                      users={props.users}
                      friends={props.friends}
+                     totalFriendsCount={props.totalFriendsCount}
 
                      followingUser={followingUser}
                      unfollowingUser={unfollowingUser}

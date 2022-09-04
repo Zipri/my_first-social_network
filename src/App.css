@@ -11,5 +11,5 @@
 .content-wrapper {
     grid-area: c;
     height: 100vh;
-    overflow: auto;
+    overflow: hidden;
 }

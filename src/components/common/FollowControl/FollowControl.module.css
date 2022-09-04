@@ -1,12 +1,20 @@
 .btn {
     width: 100px;
-    height: 50px;
-    border: 0px;
-    border-radius: 10px;
-    background-color: #deb48c;
-    padding: 7px;
+    height: 45px;
+    text-align: center;
     margin-left: 10px;
-    margin-bottom: 5px;
+    border: 1px solid #18aafd;
+    border-radius: 10px;
+    background-color: #e2f3fd;
+    padding: 7px;
+    margin-right: 10px;
+    margin-bottom: 7px;
+    cursor: pointer;
+}
+.btn:hover {
+    border: 0;
+    background-color: #18a9fc;
+    color: white;
 }
 
 .btnProf {
