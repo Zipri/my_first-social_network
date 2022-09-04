@@ -1,2 +1,0 @@
-(this["webpackJsonpmy_first-social_network"]=this["webpackJsonpmy_first-social_network"]||[]).push([[6],{361:function(t,i,n){},365:function(t,i,n){"use strict";n.r(i);n(0),n(361);var s=n(1);i.default=function(){return Object(s.jsx)("div",{children:"Settings"})}}}]);
-//# sourceMappingURL=6.0c4c1c8a.chunk.js.map
