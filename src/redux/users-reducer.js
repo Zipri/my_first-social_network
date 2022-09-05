@@ -141,7 +141,6 @@ export const getFriendsThunkCreator = () => {
         })
         dispatch(toggleIsFetching(false))
         dispatch(setFriends(data.items))
-        //TODO потом добавить отображение общего кол-ва друзей
         dispatch(setTotalFriendsCount(data.totalCount))
     }
 };

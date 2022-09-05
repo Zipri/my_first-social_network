@@ -5,8 +5,9 @@ import s from './Navbar.module.css'
 
 const pagesLinks = [
     {label: 'Profile', key: '/profile'},
+    {label: 'Messages', key: '/dialogs'},
     {label: 'Users', key: '/users'},
-    {label: 'FAQ', key: '/settings'},
+    {label: 'FAQ', key: '/faq'},
 ];
 
 const Navbar = () => {

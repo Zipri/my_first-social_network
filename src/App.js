@@ -16,8 +16,7 @@ import './App.css';
 
 const UsersContainer = React.lazy(() => import('./components/Users/UsersContainer'));
 const Dialogs = React.lazy(() => import('./components/Dialogs/Dialogs'));
-const News = React.lazy(() => import('./components/News/News'));
-const Settings = React.lazy(() => import('./components/Settings/Settings'));
+const FAQ = React.lazy(() => import('./components/FAQ/FAQ'));
 const Login = React.lazy(() => import('./components/Login/Login'));
 
 
@@ -38,12 +37,10 @@ const App = (props) => {
                            render={() => <ProfileContainer/>}/>
                     <Route path='/dialogs'
                            render={() => <Dialogs/>}/>
-                    <Route path='/news'
-                           render={() => <News/>}/>
                     <Route path='/users'
                            render={() => <UsersContainer/>}/>
-                    <Route path='/settings'
-                           render={() => <Settings/>}/>
+                    <Route path='/faq'
+                           render={() => <FAQ/>}/>
                     <Route path='/login'
                            render={() => <Login/>}/>
                     <Route path='*'

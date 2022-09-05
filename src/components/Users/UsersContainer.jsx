@@ -21,7 +21,7 @@ import {
 const UsersContainer = (props) => {
     useEffect(() => {
         props.getUsersThunkCreator(props.currentPage, props.pageSize)
-        props.getFriendsThunkCreator(props.currentFriendPage, props.pageSize)
+        props.getFriendsThunkCreator()
     }, [])
 
     const onPageChanged = (pageNumber) =>

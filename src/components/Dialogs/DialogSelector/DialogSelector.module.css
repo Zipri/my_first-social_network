@@ -1,30 +1,41 @@
 .dialogs {
     padding-top: 10px;
     border-right: 2px solid;
-    border-color: #997e03;
+    border-color: #18aafd;
+    height: 800px;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
 
+/*Scroll*/
+.dialogs::-webkit-scrollbar {
+    width: 10px;
+}
+
+.dialogs::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #e0f1fc, #18a9fc);
+}
+
 .dialog {
-    font-family: "Book Antiqua";
+    width: 380px;
+    height: 51px;
     font-size: 25px;
     margin-bottom: 10px;
     margin-right: 10px;
     display: flex;
     border-radius: 10px;
-    background-color: #f6f1e2;
+    background-color: #e0f1fc;
+}
+.dialog:hover {
+    border: 1px solid #18aafd;
+    background-color: #ffffff;
 }
 
-.dialog a {
-    padding-left: 5px;
-    position-text: center;
-    text-decoration: none;
-    color: #7ea1cd;
-}
-
-.dialog a:hover {
-    text-decoration: underline dotted;
-    color: #997e03;
+.dialogText {
+    width: 380px;
+    height: 100%;
+    padding-left: 10px;
 }
 
 .dialog img {

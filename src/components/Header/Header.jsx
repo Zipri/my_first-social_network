@@ -8,6 +8,7 @@ import logo4 from "../../assets/logo4.gif";
 
 import s from './Header.module.css';
 import {Button, Input} from "antd";
+import {changeAPI} from "../../api/api";
 
 const Logout = (props) =>
     <div className={s.logoutBlock}>
@@ -24,6 +25,7 @@ const Header = (props) => {
 
     const history = useHistory();
     let [logo, setLogo] = useState(logo1)
+    const [api, setApi] = useState(null)
 
     const changeLogo = () => {
         switch (logo) {
@@ -44,13 +46,15 @@ const Header = (props) => {
         <img onClick={changeLogo} src={logo} alt={"logo"}/>
         <div className={s.inputAPI}>
             <input placeholder={"Input API-KEY here"}
-                   style={{height: 50, width: 150, border: 0}}/>
+                   onChange={(e) => setApi(e.target.value)}
+                   onBlur={() => changeAPI(api)}
+                   style={{height: 50, width: 150, border: 0, textAlign: "center"}}/>
         </div>
         <div className={s.authBlock}>
             {props.isAuth
                 ? <Logout logout={props.logout} login={props.login}/>
                 : <Button onClick={() => history.push("/login")}
-                          style={{height: 60, border: 0, fontSize: 20}}>Log in</Button>}
+                          style={{height: 50, border: 0, fontSize: 30}}>Log in</Button>}
         </div>
     </header>
 };

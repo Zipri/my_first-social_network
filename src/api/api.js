@@ -1,12 +1,24 @@
 import axios from "axios";
+import {useState} from "react";
+import header from "../components/Header/Header";
 
-
-const instance = axios.create({
+export const changeAPI = (api) => {config = {
 	withCredentials: true,
 	baseURL: "https://social-network.samuraijs.com/api/1.0/",
-	headers: {"API-KEY": "df13e065-b76b-4abe-885d-a3a658f4ab16"}
-	//TODO сделать возможность добавлять API-KEY
-});
+	headers: {
+		"API-KEY": api
+	}
+}};
+
+let config = {
+	withCredentials: true,
+	baseURL: "https://social-network.samuraijs.com/api/1.0/",
+	headers: {
+		"API-KEY": "df13e065-b76b-4abe-885d-a3a658f4ab16"
+	}
+}
+
+const instance = axios.create(config);
 
 export const usersApi = {
 	getUsers (currentPage, pageSize) {
@@ -19,11 +31,11 @@ export const usersApi = {
 		//TODO сделать кнопку "ещё 100" и показывать тогда, когда data.totalCount < 100
 	},
 	unfollowUser (userId) {
-		return instance.delete(`follow/${userId}`)
+		return instance.delete(`follow/${userId}`,config)
 			.then(response => response.data)
 	},
 	followUser (userId) {
-		return instance.post(`follow/${userId}`)
+		return instance.post(`follow/${userId}`, {}, config)
 			.then(response => response.data)
 	}
 };
@@ -31,11 +43,11 @@ export const usersApi = {
 export const UnFollowUser = {
 	//TODO переделай остальных под это
 	unfollowUser (userId) {
-		return instance.delete(`follow/${userId}`)
+		return instance.delete(`follow/${userId}`, config)
 			.then(response => response.data)
 	},
 	followUser (userId) {
-		return instance.post(`follow/${userId}`)
+		return instance.post(`follow/${userId}`, {}, config)
 			.then(response => response.data)
 	},
 	getIsFollowed (userId) {
@@ -46,6 +58,7 @@ export const UnFollowUser = {
 
 export const profileApi = {
 	getUserProfile (userId) {
+		console.log(config.headers["API-KEY"])
 		return instance.get(`profile/${userId}`)
 			.then(response => response.data)
 	},
@@ -54,17 +67,16 @@ export const profileApi = {
 			.then(response => response.data)
 	},
 	updateProfileStatus (status) {
-		return instance.put(`profile/status`, {status: status})
+		return instance.put(`profile/status`, {status: status}, config)
 	},
 	savePhoto (photoFile) {
 		const formData = new FormData()
 		formData.append("image", photoFile)
-		return instance.put(`profile/photo`, formData, {
-			headers: {'Content-Type': 'multipart/form-data'}
-		})
+		config.headers['Content-Type'] = 'multipart/form-data'
+		return instance.put(`profile/photo`, formData, config)
 	},
 	saveProfile (profile) {
-		return instance.put(`profile`, profile)
+		return instance.put(`profile`, profile, config)
 	},
 };
 

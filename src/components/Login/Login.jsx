@@ -13,27 +13,26 @@ import s from './Login.module.css';
 const Input = Element("input")
 const minLength6 = minLengthCreator(6)
 const LoginForm = ({handleSubmit, error, captchaURL}) => {
-    console.log(error)
     return <form onSubmit={handleSubmit}>
-        <div>
+        <div className={s.inputForm}>
             <Field name={"email"}
                    component={Input}
                    placeholder="email"
                    validate={[requiredField]}/>
         </div>
-        <div>
+        <div className={s.inputForm}>
             <Field name={"password"}
                    component={Input}
                    placeholder="password"
                    type={"password"}
                    validate={[requiredField, minLength6]}/>
         </div>
-        <div>
+        <div className={s.inputForm}>
             <Field name={"rememberMe"}
                    component={"input"}
                    type={"checkbox"}/> Remember me
         </div>
-        <button>Login</button>
+        <button className={s.inputForm}>Login</button>
         {error}
         {captchaURL && <div>
             <img src={captchaURL}/>
@@ -55,9 +54,11 @@ const Login = ({isAuth, captchaURL, loginThunkCreator}) => {
         formData.captcha
     )
     if (isAuth) return <Redirect to={"/profile"}/>
-    return <div>
-        <h1>Please Login</h1>
-        <LoginReduxForm onSubmit={onSubmit} captchaURL={captchaURL}/>
+    return <div className={s.loginForm}>
+        <div>
+            <h1>Please Login</h1>
+            <LoginReduxForm onSubmit={onSubmit} captchaURL={captchaURL}/>
+        </div>
     </div>
 };
 
