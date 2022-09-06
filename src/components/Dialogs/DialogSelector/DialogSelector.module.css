@@ -31,6 +31,10 @@
     border: 1px solid #18aafd;
     background-color: #ffffff;
 }
+.dialogCurrent {
+    border: 1px solid #18aafd;
+    background-color: #ffffff;
+}
 
 .dialogText {
     width: 380px;

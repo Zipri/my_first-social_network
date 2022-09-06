@@ -1,7 +1,21 @@
 .messages {
+    position: relative;
+    height: 800px;
     padding-top: 10px;
     padding-left: 30px;
-    background-color: #b2d1fb;
+    background: linear-gradient(180deg, #e0f1fc, #18aafd);
+}
+.messagesBody {
+    overflow-x: hidden;
+    overflow-y: auto;
+    height: 700px;
+}
+.messagesBody::-webkit-scrollbar {
+    width: 10px;
+}
+
+.messagesBody::-webkit-scrollbar-thumb {
+    background-color: white;
 }
 
 .message {
@@ -10,9 +24,10 @@
 }
 
 .message div {
+    border: 1px solid #18aafd;
     margin-left: 5px;
     border-radius: 10px;
-    background-color: #ebf2ff;
+    background-color: white;
 }
 
 .message text {
@@ -27,29 +42,40 @@
 }
 
 .sendMess {
+    width: 98%;
+    position: absolute;
+    bottom: 20px;
     display: flex;
     padding-top: 5px;
     padding-right: 30px;
 }
 
 .sendMess img {
-    height: 25px;
+    height: 35px;
 }
 
 .sendMess textarea {
-    background-color: #ebf2ff;
-    height: 40px;
+    padding: 5px;
+    background-color: white;
+    height: 60px;
     width: 100%;
-    resize: none;
+    resize: vertical;
     border-radius: 10px;
     outline: none;
+    border: 1px solid #18aafd;
     font-size: 20px;
 }
 
 .sendMess button {
     margin-left: 5px;
-    height: 45px;
-    width: 45px;
-    border: none;
+    height: 60px;
+    width: 60px;
+    cursor: pointer;
     border-radius: 50%;
+    background-color: white;
+    border: 1px solid #e0f1fc;
+}
+
+.sendMess button:hover {
+    background-color: #18aafd;
 }
