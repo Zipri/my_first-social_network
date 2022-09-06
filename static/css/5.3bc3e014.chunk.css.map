@@ -1,0 +1,1 @@
+{"version":3,"sources":["webpack://src/components/Login/Login.module.css"],"names":[],"mappings":"AAAA,wBACI,gBAAiB,CACjB,YAAa,CACb,sBACJ,CAEA,wBACI,kBACJ","file":"5.3bc3e014.chunk.css","sourcesContent":[".loginForm {\r\n    margin-top: 200px;\r\n    display: flex;\r\n    justify-content: center;\r\n}\r\n\r\n.inputForm {\r\n    margin-bottom: 10px;\r\n}"]}
