@@ -58,7 +58,6 @@ export const UnFollowUser = {
 
 export const profileApi = {
 	getUserProfile (userId) {
-		console.log(config.headers["API-KEY"])
 		return instance.get(`profile/${userId}`)
 			.then(response => response.data)
 	},

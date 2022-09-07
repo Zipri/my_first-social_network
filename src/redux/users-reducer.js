@@ -1,6 +1,8 @@
-import {usersApi} from "../api/api";
+import {profileApi, usersApi} from "../api/api";
 import {updateObjectArray} from "./object-helper";
 import noAvatar from "../assets/noAvatar.png";
+import {setGlobalError} from "./app-reducer";
+import {savePhotoSuccess} from "./profile-reducer";
 
 const SET_USERS = 'users/SET-USERS';
 const SET_FRIENDS = 'users/SET-FRIENDS';
@@ -145,10 +147,14 @@ export const getFriendsThunkCreator = () => {
     }
 };
 const followUnfollowFlow = async (dispatch, userId, apiMethod, actionCreator) => {
-    dispatch(toggleFollowingProgress(true, userId))
-    let data = await apiMethod(userId)
-    if (data.resultCode === 0) dispatch(actionCreator(userId))
-    dispatch(toggleFollowingProgress(false, userId))
+    try {
+        dispatch(toggleFollowingProgress(true, userId))
+        let data = await apiMethod(userId)
+        if (data.resultCode === 0) dispatch(actionCreator(userId))
+        dispatch(toggleFollowingProgress(false, userId))
+    } catch (error) {
+        dispatch(setGlobalError(error))
+    }
 };
 export const followUserThunkCreator = (userId) => {
     return async (dispatch) => {

@@ -20,7 +20,11 @@ let initialState = {
         {id: 3, postMessage: 'НО! Почти в самом конце я узнал...', likes: 76},
         {id: 4, postMessage: 'Нет апишки на посты...', likes: 13},
         {id: 11, postMessage: 'И всё равно оргомная благодарочка Димычу за API', likes: 13},
-        {id: 6, postMessage: 'Нет апишки - нет постов, нет постов - получаем заглушку... Но ладно, выглядит вполне неплохо же? Если бы ещё работало... Но не от меня же это зависит :)', likes: 666},
+        {
+            id: 6,
+            postMessage: 'Нет апишки - нет постов, нет постов - получаем заглушку... Но ладно, выглядит вполне неплохо же? Если бы ещё работало... Но не от меня же это зависит :)',
+            likes: 666
+        },
         {
             id: 7,
             postMessage: 'Она несла в руках отвратительные, тревожные желтые цветы. Черт их знает, как их зовут, но они первые почему-то появляются в Москве.',
@@ -35,7 +39,11 @@ const profileReducer = (state = initialState, action) => {
         case ADD_POST:
             return {
                 ...state,
-                posts: [...state.posts, {id: 8, postMessage: action.newPostBody, likes: Math.floor(Math.random()*(1000-1)+1)}]
+                posts: [...state.posts, {
+                    id: 8,
+                    postMessage: action.newPostBody,
+                    likes: Math.floor(Math.random() * (1000 - 1) + 1)
+                }]
             }
 
         case DELETE_POST:
@@ -79,17 +87,20 @@ export const getUserProfileThunkCreator = (userId) => async (dispatch) => {
     dispatch(setProfile(data))
 };
 export const savePhoto = (file) => async (dispatch) => {
-    let response = await profileApi.savePhoto(file)
-    if (response.data.resultCode === 0) dispatch(savePhotoSuccess(response.data.data.photos))
+    try {
+        let response = await profileApi.savePhoto(file)
+        if (response.data.resultCode === 0) dispatch(savePhotoSuccess(response.data.data.photos))
+    } catch (error) {
+        dispatch(setGlobalError(error))
+    }
 };
 export const saveProfile = (profile) => async (dispatch, getState) => {
-    const userId = getState().auth.userId
-    const response = await profileApi.saveProfile(profile)
-    if (response.data.resultCode === 0) {
-        dispatch(getUserProfileThunkCreator(userId))
-    } else {
-        dispatch(stopSubmit("profileInfoEditForm", {_error: response.data.messages[0]}))
-        return Promise.reject(response.data.messages[0])
+    try {
+        const userId = getState().auth.userId
+        const response = await profileApi.saveProfile(profile)
+        if (response.data.resultCode === 0) dispatch(getUserProfileThunkCreator(userId))
+    } catch (error) {
+        dispatch(setGlobalError(error))
     }
 };
 export const getProfileStatusThunkCreator = (userId) => async (dispatch) => {
