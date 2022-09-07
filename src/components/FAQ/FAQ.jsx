@@ -4,6 +4,7 @@ import s from './FAQ.module.css'
 const linkYoutube = "https://www.youtube.com/playlist?list=PLcvhF2Wqh7DNVy1OCUpG3i5lyxyBWhGZ8"
 const linkBack = "https://social-network.samuraijs.com/"
 const linkKey = "https://social-network.samuraijs.com/account/"
+const linkLimits = "https://social-network.samuraijs.com/Default/Default/Limits"
 
 const FAQ = () => <div className={s.faqBody}>
     <div className={s.fagBodyChild}>
@@ -12,6 +13,19 @@ const FAQ = () => <div className={s.faqBody}>
 			<w>Cactus Network</w> - социальная сеть, созданная в рамках курса
 			<a href={linkYoutube} target={"_blank"}><q> ReactJS - путь самурая</q></a>. По сути -
 			это итоговая работа, демонстрирующая владение навыками web-разработки.
+		</div>
+		<div className={s.faqItem}>
+			<h1>Зачем нужен <w>API-KEY</w></h1>
+			Для получения возможности использовать доступный функционал приложения
+			необходимо на <a href={linkKey} target={"_blank"}> странице</a> сгенерировать этот
+			ключ. После чего, перед каким-то действием на странице - добавить его в соотвествующее поле
+			в шапке web-страницы.
+		</div>
+		<div className={s.faqItem}>
+			<h1>Количество запросов в час<w> ограничено</w></h1>
+			На <a href={linkLimits} target={"_blank"}> странице</a> можно увидеть количество оставшихся запросов
+			на текущий час. Изминение аватара профиля, статуса, профиля, добавление или удаления друга - считается
+			запросом.
 		</div>
 		<div className={s.faqItem}>
 			<h1>Почему нет возможности отправить сообщение или добавить пост?</h1>
@@ -23,13 +37,6 @@ const FAQ = () => <div className={s.faqBody}>
 			Функционал приложения в большей степени утверждается его серверной частью.
 			В предлагаемом API нет поддержки отправки сообщений и добавлений постов,
 			поэтому и в приложении их нет.
-		</div>
-		<div className={s.faqItem}>
-			<h1>Зачем нужен <w>API-KEY</w></h1>
-			Для получения возможности использовать доступный функционал приложения
-			необходимо на <a href={linkKey} target={"_blank"}> странице</a> сгенерировать этот
-			ключ. После чего, перед каким-то действием на странице - добавить его в соотвествующее поле
-			в шапке web-страницы.
 		</div>
 		<div className={s.faqItem}>
 			<h1>Будет ли это приложение развиваться дальше?</h1>
