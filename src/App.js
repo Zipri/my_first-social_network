@@ -28,7 +28,7 @@ const App = (props) => {
     return <div className='app-wrapper'>
         <HeaderContainer/>
         <Navbar/>
-        <Suspense fallback={<div>Загрузка...</div>}>
+        <Suspense fallback={<Preloader/>}>
             <div className='content-wrapper'>
                 <Switch>
                     <Route exact path='/'

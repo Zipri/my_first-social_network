@@ -7,7 +7,7 @@ import logo3 from "../../assets/logo3.gif";
 import logo4 from "../../assets/logo4.gif";
 
 import s from './Header.module.css';
-import {Button, Input} from "antd";
+import {Button} from "antd";
 import {changeAPI} from "../../api/api";
 
 const Logout = (props) =>
@@ -43,7 +43,7 @@ const Header = (props) => {
     }
 
     return <header className={s.header}>
-        <img onClick={changeLogo} src={logo} alt={"logo"}/>
+        <img onClick={changeLogo} src={logo} alt={"logo"} style={{cursor: "crosshair"}}/>
         <div className={s.inputAPI}>
             <input placeholder={"Input API-KEY here"}
                    onChange={(e) => setApi(e.target.value)}
@@ -54,7 +54,7 @@ const Header = (props) => {
             {props.isAuth
                 ? <Logout logout={props.logout} login={props.login}/>
                 : <Button onClick={() => history.push("/login")}
-                          style={{height: 50, border: 0, fontSize: 30}}>Log in</Button>}
+                          style={{height: 60, border: 0, fontSize: 30}}>Log in</Button>}
         </div>
     </header>
 };

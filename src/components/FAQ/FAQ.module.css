@@ -9,7 +9,6 @@
     top: 10%;
     left: 27%;
 
-    padding-top: 10px;
     padding-bottom: 20px;
 
     width: 500px;
@@ -38,7 +37,7 @@
     text-align: justify;
 }
 .faqItem h1 {
-    margin-top: 20px;
+    margin-top: 30px;
     font-size: 25px;
     text-align: center;
     color: #037ab9;

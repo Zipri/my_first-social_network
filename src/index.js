@@ -12,7 +12,7 @@ import 'antd/dist/antd.css';
 
 
 ReactDOM.render(<React.StrictMode>
-	<HashRouter> {/*deploy on gh-pages*/}
+	<HashRouter> {/*deployed on gh-pages*/}
 
 		<Provider store={store}>
 			<App/>

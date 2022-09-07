@@ -58,6 +58,7 @@ const Login = ({isAuth, captchaURL, loginThunkCreator}) => {
         <div>
             <h1>Please Login</h1>
             <LoginReduxForm onSubmit={onSubmit} captchaURL={captchaURL}/>
+            <h1><a href={"https://social-network.samuraijs.com/signUp"} target={"_blank"}>Registration</a></h1>
         </div>
     </div>
 };
